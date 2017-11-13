@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ecf0f1"
+    tools:context=".MainActivity">
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#3498db"/>
+    <Button
+        android:id="@+id/btnLanguages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_setting_language"
+        android:layout_marginTop="70dp"
+        android:textAllCaps="false"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:text="Camera"
+        android:textAllCaps="false"/>
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/editTextSearch_Hint"
+        android:textSize="15dp"
+        android:drawableLeft="@drawable/iconsearch"
+        android:textColor="@color/textColor"
+
+        />
+
+
+    <ListView
+        android:id="@+id/listViewSearch"
+        android:layout_width="352dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="70dp"
+        android:visibility="invisible">
+
+    </ListView>
+
+</FrameLayout>

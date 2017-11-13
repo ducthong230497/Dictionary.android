@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="buttonSpeak">Đọc</string>
+    <string name="button_setting_language">Ngôn ngữ</string>
+    <string name="editTextSearch_Hint">Nhập từ cần tra</string>
+    <string name="setting_language_english">Tiếng Anh</string>
+    <string name="setting_language_german">Tiếng Đức</string>
+    <string name="setting_language_vietnamese">Tiếng Việt</string>
+</resources>

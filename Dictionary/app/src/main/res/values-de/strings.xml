@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="buttonSpeak">Sprechen</string>
+    <string name="button_setting_language">Sprachen</string>
+    <string name="editTextSearch_Hint">verfassen Ihr Wort</string>
+    <string name="setting_language_english">Englisch</string>
+    <string name="setting_language_german">Deutsch</string>
+    <string name="setting_language_vietnamese">Vietnamesisch</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="editTextSearch_Hint">Type your word</string>
+    <string name="buttonSpeak">Speak</string>
+    <string name="button_setting_language">Languages</string>
+    <string name="setting_language_english">English</string>
+    <string name="setting_language_vietnamese">Vietnamese</string>
+    <string name="setting_language_german">German</string>
+</resources>
