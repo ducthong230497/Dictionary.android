@@ -7,4 +7,6 @@
     <string name="setting_language_english">Tiếng Anh</string>
     <string name="setting_language_german">Tiếng Đức</string>
     <string name="setting_language_vietnamese">Tiếng Việt</string>
+    <string name="RunOCR">Chạy OCR</string>
+    <string name="TapScreenToOpenCamera">Chạm màn hình để mở camera</string>
 </resources>

@@ -21,7 +21,7 @@ public class MainActivity extends LocalizationActivity {
 
     private final String TAG = this.getClass().getSimpleName();
     final int LANGUAGE_SETTING_RESULT = 1;
-    final int CAMERA_RESULT = 2;
+    final int OCR_RESULT = 2;
 
     EditText edtTextSearch;
     ImageView imvSetting;
@@ -105,8 +105,8 @@ public class MainActivity extends LocalizationActivity {
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent languageSettingInten = new Intent(getApplicationContext(), Camera.class);
-                startActivityForResult(languageSettingInten, CAMERA_RESULT);
+                Intent languageSettingInten = new Intent(getApplicationContext(), OCR.class);
+                startActivityForResult(languageSettingInten, OCR_RESULT);
             }
         });
     }
@@ -129,7 +129,7 @@ public class MainActivity extends LocalizationActivity {
             setResult(RESULT_OK, intent);
             //finish();
         }
-        else if(requestCode == CAMERA_RESULT && resultCode == RESULT_OK){
+        else if(requestCode == OCR_RESULT && resultCode == RESULT_OK){
 
         }
     }

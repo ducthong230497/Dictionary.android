@@ -1,9 +1,11 @@
 package com.example.media.dictionary;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,17 +22,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Created by Media on 11/13/2017.
+ * Created by Media on 11/2/2017.
  */
 
-public class Camera extends Activity implements SurfaceHolder.Callback {
+public class camera extends Activity implements SurfaceHolder.Callback{
     //
     // use for camera
     //
-    android.hardware.Camera camera;
+    Camera camera;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
-
     android.hardware.Camera.PictureCallback jpegCallback;
     long name;
 
@@ -46,13 +47,12 @@ public class Camera extends Activity implements SurfaceHolder.Callback {
     int _widthRectView = 0;
     int _heightRectView = 0;
 
-    /**
-     * Called when the activity is first created.
-     */
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
 
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
         surfaceHolder = surfaceView.getHolder();
@@ -66,7 +66,7 @@ public class Camera extends Activity implements SurfaceHolder.Callback {
 
         jpegCallback = new android.hardware.Camera.PictureCallback() {
             @Override
-            public void onPictureTaken(byte[] data, android.hardware.Camera camera) {
+            public void onPictureTaken(byte[] data, Camera camera) {
                 //BitmapFactory.Options options = new BitmapFactory.Options();
                 //options.inJustDecodeBounds = true;
                 Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
@@ -87,12 +87,12 @@ public class Camera extends Activity implements SurfaceHolder.Callback {
                 } finally {
                 }
                 Log.d("error", "before decode");
-                ImageView imageView = findViewById(R.id.imgView);
+                ImageView imageView = (ImageView) findViewById(R.id.imgView);
                 //BitmapFactory.Options options = new BitmapFactory.Options();
                 //options.inJustDecodeBounds = true;
                 //Bitmap bitmap = BitmapFactory.decodeFile(String.format("/sdcard/%d.jpg", name));
                 Log.d("screenWidth", ""+ Resources.getSystem().getDisplayMetrics().widthPixels);
-                Log.d("screenHeight", ""+Resources.getSystem().getDisplayMetrics().heightPixels);
+                Log.d("screenHeight", ""+ Resources.getSystem().getDisplayMetrics().heightPixels);
                 //Log.d("bitmapWidth", ""+options.outWidth);
                 //Log.d("bitmapHeight", ""+options.outHeight);
                 Log.d("error", "after decode");
@@ -116,6 +116,12 @@ public class Camera extends Activity implements SurfaceHolder.Callback {
                 Log.d("error", "after crop");
                 imageView.setImageBitmap(cropBitmap);
                 Toast.makeText(getApplicationContext(), "Picture Saved", Toast.LENGTH_LONG).show();
+                // put extra
+                Intent it = new Intent();
+                it.putExtra("cropImage", cropBitmap);
+                it.putExtra("cropImageName",  ""+name);
+                setResult(Activity.RESULT_OK, it);
+                finish();
                 refreshCamera();
             }
         };
@@ -224,7 +230,7 @@ public class Camera extends Activity implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         try {
             // open the camera
-            camera = android.hardware.Camera.open();
+            camera = Camera.open();
         } catch (RuntimeException e) {
             // check for exceptions
             System.err.println(e);
