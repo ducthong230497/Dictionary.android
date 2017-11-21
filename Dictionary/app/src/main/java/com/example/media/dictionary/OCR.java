@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcel;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * Created by Media on 11/14/2017.
@@ -46,7 +49,8 @@ public class OCR extends Activity {
         imvPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Camera = new Intent(getApplicationContext(), com.example.media.dictionary.camera.class);
+                //Intent Camera = new Intent(getApplicationContext(), com.example.media.dictionary.camera.class);
+                Intent Camera = new Intent(getApplicationContext(), com.example.media.dictionary.camera2.class);
                 startActivityForResult(Camera, OCR_RESULT);
             }
         });

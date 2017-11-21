@@ -104,25 +104,32 @@ public class camera extends Activity implements SurfaceHolder.Callback{
                 int surfaceViewHeight = surfaceView.getHeight();
                 Log.d("surfaceViewWidth", ""+surfaceViewWidth);
                 Log.d("surfaceViewHeight", ""+surfaceViewHeight);
-                float a = (float)480 / (float)surfaceViewHeight;
-                float b = (float)640 / (float)surfaceViewWidth;
+                float a = (float)1200 / (float)surfaceViewHeight;
+                float b = (float)1600 / (float)surfaceViewWidth;
                 Log.d("a", ""+a);
                 Log.d("b", ""+b);
                 Log.d("Newx", ""+_xRectView*b);
                 Log.d("Newy", ""+_yRectView*a);
                 Log.d("NewWidth", ""+_widthRectView*b);
                 Log.d("NewHeight", ""+_heightRectView*b);
-                Bitmap cropBitmap = Bitmap.createBitmap(bitmap, (int)(_xRectView*b), (int)(_yRectView*a), (int)(_widthRectView*b),(int)(_heightRectView*a));
+                /*Bitmap cropBitmap = Bitmap.createBitmap(bitmap, (int)(rectangleView.point1.x*b),
+                                (int)(rectangleView.point1.y*a),
+                                (int)(Math.abs(rectangleView.point2.x - rectangleView.point1.x)*b),
+                                (int)(Math.abs(rectangleView.point2.y - rectangleView.point1.y)*a));*/
+                Bitmap cropBitmap = Bitmap.createBitmap(bitmap, (int)(rectangleView.point1.x),
+                        (int)(rectangleView.point1.y),
+                        (int)(Math.abs(rectangleView.point2.x - rectangleView.point1.x)),
+                        (int)(Math.abs(rectangleView.point2.y - rectangleView.point1.y)));
                 Log.d("error", "after crop");
                 imageView.setImageBitmap(cropBitmap);
                 Toast.makeText(getApplicationContext(), "Picture Saved", Toast.LENGTH_LONG).show();
-                // put extra
+                // put bitmap extra
                 Intent it = new Intent();
                 it.putExtra("cropImage", cropBitmap);
                 it.putExtra("cropImageName",  ""+name);
                 setResult(Activity.RESULT_OK, it);
                 finish();
-                refreshCamera();
+                //refreshCamera();
             }
         };
         //
@@ -133,25 +140,37 @@ public class camera extends Activity implements SurfaceHolder.Callback{
         rectangleView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                final int x = (int) event.getRawX();
-                final int y = (int) event.getRawY();
+                final int xTouch = (int) event.getRawX();
+                final int yTouch = (int) event.getRawY();
                 int width= view.getLayoutParams().width;
                 int height = view.getLayoutParams().height;
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d("leftmargin", " "+ _xRectView);
-                        Log.d("Width", ""+width);
-                        Log.d(">>", "x + width:" + (_xRectView + width) + " height:" + height + " x:" + x + " y:" + y);
+                        //Log.d("leftmargin", " "+ _xRectView);
+                        //Log.d("Width", ""+width);
+                        //Log.d(">>", "x + width:" + (_xRectView + width) + " height:" + height + " x:" + x + " y:" + y);
+                        if(_xRectView + width - 200 <= xTouch){
+                            Log.d("xTouch & y Touch", ""+xTouch + " "+yTouch);
+                        }
                         break;
                 }
-                if((Math.abs(width - x) <= 100 && Math.abs(width - x) > 0)){
+                int xOffSet_2 = rectangleView.point2.x - xTouch;
+                int yOffSet_2 = rectangleView.point2.y - yTouch;
+                if(Math.abs(xOffSet_2) <= 100 && Math.abs(yOffSet_2) <= 100){
+                    Log.d("ACTIONMOVE", "after cal offset");
                     switch (event.getAction()){
                         case MotionEvent.ACTION_MOVE:
-                            Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-                            view.getLayoutParams().width = x;
-                            //view.getLayoutParams().height = y;
+                                //Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
+                                //view.getLayoutParams().width = xTouch;
+                                //view.getLayoutParams().height = yTouch;
+                            //if (yTouch >= Resources.getSystem().getDisplayMetrics().widthPixels)
+                                //view.getLayoutParams().height = yTouch - Resources.getSystem().getDisplayMetrics().widthPixels;
+                            rectangleView.point2.set(xTouch, yTouch);
+                            Log.d("point1", ""+rectangleView.point2.x + " " + rectangleView.point2.y);
+                            view.invalidate();
                             view.requestLayout();
+
                             break;
                         case MotionEvent.ACTION_UP:
                             break;
@@ -173,6 +192,7 @@ public class camera extends Activity implements SurfaceHolder.Callback{
                 _yRectView = posXY[1];
                 _widthRectView = rectangleView.getWidth();
                 _heightRectView = rectangleView.getHeight();
+                Log.d("xRecView & yRecView", ""+_xRectView + " "+_yRectView);
             }
         });
     }
@@ -189,7 +209,7 @@ public class camera extends Activity implements SurfaceHolder.Callback{
         rectangleView.getLocationInWindow(posXY);
         _xRectView = posXY[0];
         _yRectView = posXY[1];
-        Log.d("X and Y Point", _xRectView + " " + _yRectView);
+        Log.d("xRecView and yRecView", _xRectView + " " + _yRectView);
     }
 
     public void captureImage(View v) throws IOException {

@@ -3,6 +3,7 @@
     package="com.example.media.dictionary">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera2"/>
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <application
@@ -23,6 +24,7 @@
         <activity android:name=".Setting"/>
         <activity android:name=".LanguagesSetting"/>
         <activity android:name=".camera"/>
+        <activity android:name=".camera2" android:theme="@style/NoTitleBarTheme"/>
         <activity android:name=".OCR"/>
     </application>
 

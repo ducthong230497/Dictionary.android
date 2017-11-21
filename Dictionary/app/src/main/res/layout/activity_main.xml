@@ -12,22 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#3498db"/>
-    <Button
-        android:id="@+id/btnLanguages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_setting_language"
-        android:layout_marginTop="70dp"
-        android:textAllCaps="false"
-        android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btnCamera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:text="Camera"
-        android:textAllCaps="false"/>
 
     <EditText
         android:id="@+id/editTextSearch"
@@ -39,8 +24,33 @@
         android:textSize="15dp"
         android:drawableLeft="@drawable/iconsearch"
         android:textColor="@color/textColor"
-
         />
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="70dp">
+    <Button
+        android:id="@+id/btnLanguages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_setting_language"
+        android:textAllCaps="false"
+        android:gravity="center"/>
+</FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp">
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:textAllCaps="false"/>
+    </FrameLayout>
 
 
     <ListView
@@ -49,8 +59,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="17dp"
         android:layout_marginTop="70dp"
-        android:visibility="invisible">
-
-    </ListView>
-
+        android:visibility="invisible"
+        android:background="#3498db"/>
 </FrameLayout>

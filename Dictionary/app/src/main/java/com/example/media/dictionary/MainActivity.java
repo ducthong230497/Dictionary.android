@@ -106,6 +106,7 @@ public class MainActivity extends LocalizationActivity {
             @Override
             public void onClick(View view) {
                 Intent languageSettingInten = new Intent(getApplicationContext(), OCR.class);
+                //Intent languageSettingInten = new Intent(getApplicationContext(), camera2.class);
                 startActivityForResult(languageSettingInten, OCR_RESULT);
             }
         });
