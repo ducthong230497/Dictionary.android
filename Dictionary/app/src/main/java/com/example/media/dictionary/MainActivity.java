@@ -1,6 +1,9 @@
 package com.example.media.dictionary;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,18 +16,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
 
-public class MainActivity extends LocalizationActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends LocalizationActivity implements SearchView.OnQueryTextListener{
 
     private final String TAG = this.getClass().getSimpleName();
     final int LANGUAGE_SETTING_RESULT = 1;
     final int OCR_RESULT = 2;
 
-    EditText edtTextSearch;
+    DictionaryDatabase dictionaryDatabase;
+    SearchView SearchWord;
     ImageView imvSetting;
+    ListView lsvWord;
+    ListViewAdapter adapter;
+    ArrayList<String> arraylist = new ArrayList<String>();
+    String definition;
     final int a = 1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,63 +44,48 @@ public class MainActivity extends LocalizationActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
 
-
-        final ListView lsv = (ListView) findViewById((R.id.listViewSearch));
+        dictionaryDatabase = new DictionaryDatabase(this);
+        arraylist = dictionaryDatabase.getAllWords();
+        lsvWord = (ListView) findViewById((R.id.listViewSearch));
         //neu ko co final thi phai khai tao listview ngoai ham onCreate
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
+        String[] values = new String[] { "AndroidListView",
+                "Adapterimplementation",
+                "SimpleistViewInAndroid",
+                "Create ListViewndroid",
+                "AndroidExample",
+                "ListViewSourc Code",
+                "ListViewArrayAdapter",
+                "AndroidExampleListView"
         };
 
         ArrayAdapter<String> strAdapter = new ArrayAdapter<String>( this,
                 android.R.layout.simple_list_item_1,
                 values);
 
-        lsv.setAdapter(strAdapter);
+        for (int i = 0; i < values.length; i++) {
+            arraylist.add(values[i]);
+        }
 
-        lsv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Pass results to ListViewAdapter Class
+        adapter = new ListViewAdapter(this, DictionaryDatabase.listWord);
+
+        lsvWord.setAdapter(adapter);
+
+        lsvWord.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String  itemValue    = (String) lsv.getItemAtPosition(i);
-                Toast.makeText(getApplicationContext(),"Position :"+i+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
-                Log.d(TAG, "go here");
-                startTranslate();
+                String  itemValue    = (String) lsvWord.getItemAtPosition(i);
+                //Toast.makeText(getApplicationContext(),"Position :"+i+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                //        .show();
+                //Log.d(TAG, "go here");
+                startTranslate(itemValue);
             }
         });
 
 
 
-        edtTextSearch = (EditText) findViewById(R.id.editTextSearch);
-        edtTextSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                int editTextLength = edtTextSearch.getText().length();
-                if(editTextLength != 0 && lsv.getVisibility() == View.INVISIBLE){
-                    lsv.setVisibility(View.VISIBLE);
-                }
-                else if(editTextLength == 0){
-                    Log.d(TAG, "it goes here!!!!!");
-                    lsv.setVisibility(View.INVISIBLE);
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        SearchWord = (SearchView) findViewById(R.id.editTextSearch);
+        SearchWord.setOnQueryTextListener(this);
 
 
         Button btnLanguages = (Button) findViewById(R.id.btnLanguages);
@@ -111,10 +108,36 @@ public class MainActivity extends LocalizationActivity {
             }
         });
     }
-    void startTranslate(){
+
+
+    void startTranslate(String itemValue){
+        Cursor c = dictionaryDatabase.getWordMatches(SearchWord.getQuery().toString(), null);
+        if (c != null){
+            definition = c.getString(1);
+        }
         Intent translateLayout = new Intent(getApplicationContext(), com.example.media.dictionary.Translate.class);
-        translateLayout.putExtra("searchWord", edtTextSearch.getText().toString());
+        translateLayout.putExtra("searchWord", itemValue.toString());
+        translateLayout.putExtra("definition", definition);
         startActivity(translateLayout);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (newText.length() == 0){
+            lsvWord.setVisibility(View.INVISIBLE);
+        }
+        else{
+            String text = newText;
+            adapter.filter(text);
+            lsvWord.setVisibility(View.VISIBLE);
+        }
+        return false;
     }
 
     @Override

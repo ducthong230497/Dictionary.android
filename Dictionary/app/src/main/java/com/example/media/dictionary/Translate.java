@@ -1,10 +1,13 @@
 package com.example.media.dictionary;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -14,6 +17,9 @@ import java.util.Locale;
 
 public class Translate extends Activity {
     TextToSpeech textToSpeech;
+    String word;
+    String definition;
+    TextView txvWord;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -22,7 +28,7 @@ public class Translate extends Activity {
             @Override
             public void onInit(int i) {
                 textToSpeech.setLanguage(Locale.US);
-                textToSpeech.setPitch(3f);
+                textToSpeech.setPitch(1.5f);
                 textToSpeech.setSpeechRate(1.0f);
                 if (textToSpeech.getLanguage() == Locale.US){
 
@@ -33,13 +39,24 @@ public class Translate extends Activity {
                 }*/
             }
         });
-        final String word = getIntent().getExtras().getString("searchWord");
-        Button btnSpeak = (Button) findViewById(R.id.btnSpeak);
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
+        word = getIntent().getExtras().getString("searchWord");
+        definition = getIntent().getExtras().getString("definition");
+        definition = definition.replaceFirst("§", "]§");
+        definition = definition.replaceAll("§", "\n");
+        definition = definition.replaceAll("=", "-");
+        definition = definition.replaceAll("\\+", "=");
+        String str = word + " [" + definition;
+        ImageView imvSpeak = (ImageView) findViewById(R.id.imvSpeak);
+        imvSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 textToSpeech.speak(word, textToSpeech.QUEUE_FLUSH, null);
             }
         });
+
+        txvWord = findViewById(R.id.txvWord);
+        txvWord.setText(str);
     }
+
+
 }

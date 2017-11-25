@@ -14,16 +14,15 @@
         android:background="#3498db"/>
 
 
-    <EditText
+    <SearchView
         android:id="@+id/editTextSearch"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/editTextSearch_Hint"
+        android:queryHint="@string/editTextSearch_Hint"
         android:textSize="15dp"
-        android:drawableLeft="@drawable/iconsearch"
         android:textColor="@color/textColor"
+        android:iconifiedByDefault="false"
         />
 
 
@@ -55,10 +54,21 @@
 
     <ListView
         android:id="@+id/listViewSearch"
-        android:layout_width="352dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
         android:layout_marginTop="70dp"
         android:visibility="invisible"
         android:background="#3498db"/>
+
+    <Button
+        android:id="@+id/btnTim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tìm"
+        android:layout_gravity="bottom|center"/>
+    <TextView
+        android:id="@+id/txvWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 </FrameLayout>

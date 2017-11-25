@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Translate">
-
-    <Button
-        android:id="@+id/btnSpeak"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonSpeak"
-        android:textAllCaps="false"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imvSpeak"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/iconsound"/>
+        <TextView
+            android:id="@+id/txvWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            />
+
+    </RelativeLayout>
+</ScrollView>
