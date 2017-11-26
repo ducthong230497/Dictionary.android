@@ -9,5 +9,7 @@
     <string name="setting_language_vietnamese">Tiếng Việt</string>
     <string name="RunOCR">Chạy OCR</string>
     <string name="TapScreenToOpenCamera">Chạm màn hình để mở camera</string>
-    <string name="VietnameseDic">Từ điển tiếng việt</string>
+    <string name="VietnameseDic">Việt - Anh</string>
+    <string name="German_Vietnamese_Dict">Đức - Việt</string>
+    <string name="Vietnamese_German_Dict">Việt - Đức</string>
 </resources>

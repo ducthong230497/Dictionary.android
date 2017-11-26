@@ -2,23 +2,15 @@ package com.example.media.dictionary;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
 
@@ -49,7 +41,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         arraylist = dictionaryDatabase.getAllWords();
         lsvWord = (ListView) findViewById((R.id.listViewSearch));
         //neu ko co final thi phai khai tao listview ngoai ham onCreate
-        String[] values = new String[] { "AndroidListView",
+        /*String[] values = new String[] { "AndroidListView",
                 "Adapterimplementation",
                 "SimpleistViewInAndroid",
                 "Create ListViewndroid",
@@ -65,10 +57,10 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
 
         for (int i = 0; i < values.length; i++) {
             arraylist.add(values[i]);
-        }
+        }*/
 
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, DictionaryDatabase.listWord);
+        adapter = new ListViewAdapter(this, arraylist);
 
         lsvWord.setAdapter(adapter);
 
@@ -113,7 +105,8 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         btnEngVieDict.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent EngVieIntent = new Intent(getApplicationContext(), VietnameseEnglishActivity.class);
+                startActivity(EngVieIntent);
             }
         });
     }

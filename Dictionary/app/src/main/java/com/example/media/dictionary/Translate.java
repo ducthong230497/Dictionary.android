@@ -46,6 +46,9 @@ public class Translate extends Activity {
         definition = definition.replaceAll("=", "-");
         definition = definition.replaceAll("\\+", "=");
         String str = word + " [" + definition;
+        txvWord = findViewById(R.id.txvWord);
+        txvWord.setText(str);
+
         ImageView imvSpeak = (ImageView) findViewById(R.id.imvSpeak);
         imvSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +57,7 @@ public class Translate extends Activity {
             }
         });
 
-        txvWord = findViewById(R.id.txvWord);
-        txvWord.setText(str);
+
     }
 
 

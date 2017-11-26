@@ -8,5 +8,7 @@
     <string name="setting_language_german">German</string>
     <string name="RunOCR">Run OCR</string>
     <string name="TapScreenToOpenCamera">Tap screen to open camera</string>
-    <string name="VietnameseDic">Vietnamese Dictionary</string>
+    <string name="VietnameseDic">Vietnamese - English</string>
+    <string name="German_Vietnamese_Dict">German - Vietnamese</string>
+    <string name="Vietnamese_German_Dict">Vietnamese - German</string>
 </resources>

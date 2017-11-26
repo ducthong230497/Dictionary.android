@@ -25,7 +25,6 @@
         android:iconifiedByDefault="false"
         />
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,10 +37,46 @@
             android:textAllCaps="false"/>
     </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp">
+        <Button
+            android:id="@+id/btn_Ger_Vie_Dict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/German_Vietnamese_Dict"
+            android:textAllCaps="false"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp">
+        <Button
+            android:id="@+id/btn_Vie_Ger_Dict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Vietnamese_German_Dict"
+            android:textAllCaps="false"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="190dp">
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:textAllCaps="false"/>
+    </FrameLayout>
+
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="110dp">
+    android:layout_marginTop="230dp">
     <Button
         android:id="@+id/btnLanguages"
         android:layout_width="match_parent"
@@ -51,17 +86,7 @@
         android:gravity="center"/>
 </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
-        <Button
-            android:id="@+id/btnCamera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Camera"
-            android:textAllCaps="false"/>
-    </FrameLayout>
+
 
 
     <ListView

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VietnameseEnglishActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#3498db"/>
+
+
+        <SearchView
+            android:id="@+id/editText_V_E_Search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:queryHint="@string/editTextSearch_Hint"
+            android:textSize="15dp"
+            android:textColor="@color/textColor"
+            android:iconifiedByDefault="false"
+            />
+        <FrameLayout
+            android:id="@+id/frame_V_E_Container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginTop="70dp">
+            <TextView
+                android:id="@+id/txv_V_E_Word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                />
+        </FrameLayout>
+        <ListView
+            android:id="@+id/listView_V_E_Search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:visibility="invisible"
+            android:background="#3498db"/>
+    </FrameLayout>
+</FrameLayout>
