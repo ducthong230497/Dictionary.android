@@ -26,6 +26,7 @@
         <activity android:name=".camera"/>
         <activity android:name=".camera2" android:theme="@style/NoTitleBarTheme"/>
         <activity android:name=".OCR"/>
+        <activity android:name=".EnglishVietnamese"/>
     </application>
 
 </manifest>

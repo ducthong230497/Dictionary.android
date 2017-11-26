@@ -26,10 +26,22 @@
         />
 
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
+        <Button
+            android:id="@+id/btnEngVieDict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/VietnameseDic"
+            android:textAllCaps="false"/>
+    </FrameLayout>
+
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="70dp">
+    android:layout_marginTop="110dp">
     <Button
         android:id="@+id/btnLanguages"
         android:layout_width="match_parent"
@@ -42,7 +54,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="150dp">
         <Button
             android:id="@+id/btnCamera"
             android:layout_width="match_parent"
@@ -59,16 +71,4 @@
         android:layout_marginTop="70dp"
         android:visibility="invisible"
         android:background="#3498db"/>
-
-    <Button
-        android:id="@+id/btnTim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tìm"
-        android:layout_gravity="bottom|center"/>
-    <TextView
-        android:id="@+id/txvWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
 </FrameLayout>

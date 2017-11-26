@@ -29,7 +29,7 @@ public class DictionaryDatabase {
 
     private static final String DATABASE_NAME = "Dictionary.db";
     private static final String FTS_VIRTUAL_TABLE = "DICTIONARYTABLE";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 25;
 
     public static ArrayList<String> listWord = new ArrayList<String>();
 
@@ -147,8 +147,8 @@ public class DictionaryDatabase {
     }
     // mới thêm
     public Cursor getWordMatches(String query, String[] columns) {
-        String selection = COL_WORD + " MATCH ?";
-        String[] selectionArgs = new String[] {query+"*"};
+        String selection = COL_WORD + " = ?";
+        String[] selectionArgs = new String[] {query};
 
         return query(selection, selectionArgs, columns);
     }

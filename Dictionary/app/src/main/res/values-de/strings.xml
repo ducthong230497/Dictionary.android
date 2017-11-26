@@ -9,4 +9,5 @@
     <string name="setting_language_vietnamese">Vietnamesisch</string>
     <string name="RunOCR">rennen OCR</string>
     <string name="TapScreenToOpenCamera">tippen Sie auf dem Bildschirm, um die Kamera zu öffnen</string>
+    <string name="VietnameseDic">Vietnamesisch Wörterbuch</string>
 </resources>

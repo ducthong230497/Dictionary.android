@@ -3,6 +3,7 @@ package com.example.media.dictionary;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -74,6 +75,16 @@ public class OCR extends Activity {
                 mTess.end();
                 TextView OCRTextView = (TextView) findViewById(R.id.textview1);
                 OCRTextView.setText(OCRresult);
+                Cursor c = MainActivity.dictionaryDatabase.getWordMatches(OCRresult, null);
+                String definition;
+                if (c != null){
+                    definition = c.getString(1);
+                    Intent translateLayout = new Intent(getApplicationContext(), com.example.media.dictionary.Translate.class);
+                    translateLayout.putExtra("searchWord", OCRresult);
+                    translateLayout.putExtra("definition", definition);
+                    startActivity(translateLayout);
+                }
+
             }
         });
     }

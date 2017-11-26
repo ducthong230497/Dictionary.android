@@ -30,7 +30,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     final int LANGUAGE_SETTING_RESULT = 1;
     final int OCR_RESULT = 2;
 
-    DictionaryDatabase dictionaryDatabase;
+    public static DictionaryDatabase dictionaryDatabase;
     SearchView SearchWord;
     ImageView imvSetting;
     ListView lsvWord;
@@ -38,6 +38,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     ArrayList<String> arraylist = new ArrayList<String>();
     String definition;
     final int a = 1;
+    Button btnEngVieDict;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,11 +108,19 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
                 startActivityForResult(languageSettingInten, OCR_RESULT);
             }
         });
+
+        btnEngVieDict = (Button) findViewById(R.id.btnEngVieDict);
+        btnEngVieDict.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
 
     void startTranslate(String itemValue){
-        Cursor c = dictionaryDatabase.getWordMatches(SearchWord.getQuery().toString(), null);
+        Cursor c = dictionaryDatabase.getWordMatches(itemValue, null);
         if (c != null){
             definition = c.getString(1);
         }
