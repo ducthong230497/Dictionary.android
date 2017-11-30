@@ -31,7 +31,8 @@ public class DictionaryDatabase {
     private static final String FTS_VIRTUAL_TABLE = "DICTIONARYTABLE";
     private static final int DATABASE_VERSION = 25;
 
-    public static ArrayList<String> listWord = new ArrayList<String>();
+    public static ArrayList<String> listAllWord = new ArrayList<String>();
+    public static ArrayList<String>[] listWord = (ArrayList<String>[])new ArrayList[27];
 
     private final DatabaseOpenHelper mDatabaseOpenHelper;
 
@@ -176,13 +177,39 @@ public class DictionaryDatabase {
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setTables(FTS_VIRTUAL_TABLE);
         Cursor c = builder.query(mDatabaseOpenHelper.getReadableDatabase(), new String[]{COL_WORD}, null, null, null, null, null);
+        String lastWord = null;
         if (c != null){
             c.moveToFirst();
             while (c.isAfterLast() == false){
-                listWord.add(c.getString(0));
+                String word = c.getString(0);
+                if (lastWord == null || (!word.equals("") && lastWord.charAt(0) != word.charAt(0))){
+                    lastWord = word;
+                }
+                if (!word.equals("")){
+                    int i = word.charAt(0);
+                    if (i >= 97){
+                        i -= 97;
+                    }
+                    else if (i >= 65){
+                        i -= 65;
+                    }
+                    else {
+                        i = 26;
+                    }
+                    if (0 <= i && i <= 26){
+                        if (listWord[i] == null){
+                            listWord[i] = new ArrayList<String>();
+                        }
+                        listWord[i].add(word);
+                    }
+                }
+                listAllWord.add(word);
                 c.moveToNext();
+
+                /*listAllWord.add(c.getString(0));
+                c.moveToNext();*/
             }
         }
-        return listWord;
+        return listAllWord;
     }
 }

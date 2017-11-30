@@ -6,8 +6,6 @@
     android:background="#ecf0f1"
     tools:context=".MainActivity">
 
-
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -69,14 +67,27 @@
             android:id="@+id/btnCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Camera"
+            android:text="@string/Camera"
             android:textAllCaps="false"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp">
+        <Button
+            android:id="@+id/btnFloatingWidget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ChatHead"
+            android:textAllCaps="false"
+            />
     </FrameLayout>
 
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="230dp">
+    android:layout_marginTop="270dp">
     <Button
         android:id="@+id/btnLanguages"
         android:layout_width="match_parent"

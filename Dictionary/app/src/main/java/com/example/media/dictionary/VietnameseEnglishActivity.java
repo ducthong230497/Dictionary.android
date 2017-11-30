@@ -35,7 +35,7 @@ public class VietnameseEnglishActivity extends Activity {
         final VietnameseEnglishDatabase vietnameseEnglishDatabase = new VietnameseEnglishDatabase(this);
         arrayList = vietnameseEnglishDatabase.getAllWords();
 
-        adapter = new ListViewAdapter(getApplicationContext(),arrayList);
+        adapter = new ListViewAdapter(getApplicationContext(),arrayList, VietnameseEnglishDatabase.listWord);
 
         txv_V_E = findViewById(R.id.txv_V_E_Word);
         frameLayout = findViewById(R.id.frame_V_E_Container);

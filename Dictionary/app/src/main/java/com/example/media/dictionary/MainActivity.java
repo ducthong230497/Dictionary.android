@@ -2,7 +2,10 @@ package com.example.media.dictionary;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +24,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     private final String TAG = this.getClass().getSimpleName();
     final int LANGUAGE_SETTING_RESULT = 1;
     final int OCR_RESULT = 2;
+    private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
 
     public static DictionaryDatabase dictionaryDatabase;
     SearchView SearchWord;
@@ -31,6 +35,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     String definition;
     final int a = 1;
     Button btnEngVieDict;
+    Button btnFloatingWidget;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +65,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         }*/
 
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, arraylist);
+        adapter = new ListViewAdapter(this, arraylist, DictionaryDatabase.listWord);
 
         lsvWord.setAdapter(adapter);
 
@@ -109,8 +114,31 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
                 startActivity(EngVieIntent);
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+
+            //If the draw over permission is not available open the settings screen
+            //to grant the permission.
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
+        } else {
+            initializeView();
+        }
     }
 
+    /**
+     * Set and initialize the view elements.
+     */
+    private void initializeView() {
+        findViewById(R.id.btnFloatingWidget).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startService(new Intent(MainActivity.this, FloatingViewService.class));
+                finish();
+            }
+        });
+    }
 
     void startTranslate(String itemValue){
         Cursor c = dictionaryDatabase.getWordMatches(itemValue, null);
@@ -136,8 +164,10 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         }
         else{
             String text = newText;
-            adapter.filter(text);
-            lsvWord.setVisibility(View.VISIBLE);
+            if (text.charAt(0) != ' '){
+                adapter.filter(text);
+                lsvWord.setVisibility(View.VISIBLE);
+            }
         }
         return false;
     }

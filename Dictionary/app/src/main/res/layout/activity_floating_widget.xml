@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--Root container-->
+    <RelativeLayout
+        android:id="@+id/root_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:id="@+id/collapse_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+            <!--Icon of floating widget -->
+            <ImageView
+                android:id="@+id/collapsed_iv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/images"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/expanded_container"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@color/back_Ground"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:background="@color/back_Ground"/>
+
+            <SearchView
+                android:id="@+id/searchInChatHead"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:queryHint="@string/editTextSearch_Hint"
+                android:textSize="15dp"
+                android:textColor="@color/textColor"
+                android:iconifiedByDefault="false"
+                />
+            <ListView
+                android:id="@+id/lsvInChatHead"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:visibility="invisible"
+                android:layout_below="@id/searchInChatHead"
+                android:background="@color/back_Ground"/>
+            <ImageView
+                android:id="@+id/btn_open"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_open"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                />
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_close"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

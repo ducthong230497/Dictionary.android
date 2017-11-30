@@ -12,4 +12,6 @@
     <string name="VietnameseDic">Vietnamesisch - Englisch</string>
     <string name="German_Vietnamese_Dict">Deutsch - Vietnamesisch</string>
     <string name="Vietnamese_German_Dict">Vietnamesisch - Deutsch</string>
+    <string name="Camera">Kamera</string>
+    <string name="ChatHead">schnell suchen</string>
 </resources>

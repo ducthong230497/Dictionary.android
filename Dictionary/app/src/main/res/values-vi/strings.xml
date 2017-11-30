@@ -12,4 +12,6 @@
     <string name="VietnameseDic">Việt - Anh</string>
     <string name="German_Vietnamese_Dict">Đức - Việt</string>
     <string name="Vietnamese_German_Dict">Việt - Đức</string>
+    <string name="Camera">Máy ảnh</string>
+    <string name="ChatHead">Tra nhanh</string>
 </resources>

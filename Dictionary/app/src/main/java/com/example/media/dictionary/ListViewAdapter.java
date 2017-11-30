@@ -20,15 +20,17 @@ public class ListViewAdapter extends BaseAdapter {
 
     Context mContext;
     LayoutInflater inflater;
-    private List<String> wordList = null;
+    private List<String> listAllWord = null;
+    ArrayList<String>[] listWord;
     private ArrayList<String> arraylist;
 
-    public ListViewAdapter(Context context, List<String> wordList) {
+    public ListViewAdapter(Context context, List<String> wordList, ArrayList<String>[] listWord) {
         mContext = context;
-        this.wordList = wordList;
+        this.listAllWord = wordList;
         inflater = LayoutInflater.from(mContext);
         this.arraylist = new ArrayList<String>();
         this.arraylist.addAll(wordList);
+        this.listWord = listWord;
     }
 
     public class ViewHolder {
@@ -37,12 +39,12 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return wordList.size();
+        return listAllWord.size();
     }
 
     @Override
     public String getItem(int position) {
-        return wordList.get(position);
+        return listAllWord.get(position);
     }
 
     @Override
@@ -62,23 +64,33 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.name.setText(wordList.get(position).toString());
+        holder.name.setText(listAllWord.get(position).toString());
         return view;
     }
 
     // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
-        wordList.clear();
-        if (charText.length() == 0) {
-            wordList.addAll(arraylist);
-        } else {
-            for (String wp : arraylist) {
+        listAllWord.clear();
+        //if (charText.length() == 0) {
+        //    listAllWord.addAll(arraylist);
+        //} else {
+        int i = charText.charAt(0);
+        if (i >= 97){
+            i -= 97;
+        }
+        else if (i >= 65){
+            i -= 65;
+        }
+        else {
+            i = 26;
+        }
+            for (String wp : listWord[i]) {
                 if (wp.toString().toLowerCase(Locale.getDefault()).startsWith(charText)) {
-                    wordList.add(wp);
+                    listAllWord.add(wp);
                 }
             }
-        }
+        //}
         notifyDataSetChanged();
     }
 
