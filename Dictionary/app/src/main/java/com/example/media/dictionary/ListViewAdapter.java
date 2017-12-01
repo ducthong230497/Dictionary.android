@@ -21,16 +21,14 @@ public class ListViewAdapter extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
     private List<String> listAllWord = null;
-    ArrayList<String>[] listWord;
     private ArrayList<String> arraylist;
 
-    public ListViewAdapter(Context context, List<String> wordList, ArrayList<String>[] listWord) {
+    public ListViewAdapter(Context context, List<String> wordList) {
         mContext = context;
         this.listAllWord = wordList;
         inflater = LayoutInflater.from(mContext);
         this.arraylist = new ArrayList<String>();
         this.arraylist.addAll(wordList);
-        this.listWord = listWord;
     }
 
     public class ViewHolder {
@@ -75,7 +73,7 @@ public class ListViewAdapter extends BaseAdapter {
         //if (charText.length() == 0) {
         //    listAllWord.addAll(arraylist);
         //} else {
-        int i = charText.charAt(0);
+        /*int i = charText.charAt(0);
         if (i >= 97){
             i -= 97;
         }
@@ -84,8 +82,8 @@ public class ListViewAdapter extends BaseAdapter {
         }
         else {
             i = 26;
-        }
-            for (String wp : listWord[i]) {
+        }*/
+            for (String wp : arraylist) {
                 if (wp.toString().toLowerCase(Locale.getDefault()).startsWith(charText)) {
                     listAllWord.add(wp);
                 }

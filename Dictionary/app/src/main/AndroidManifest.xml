@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".Translate"/>
         <activity android:name=".Setting"/>
-        <activity android:name=".LanguagesSetting"/>
+        <activity android:name=".LanguagesSetting" android:parentActivityName=".MainActivity"/>
         <activity android:name=".camera"/>
         <activity android:name=".camera2" android:theme="@style/NoTitleBarTheme"/>
         <activity android:name=".OCR"/>

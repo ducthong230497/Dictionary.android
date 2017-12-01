@@ -17,7 +17,7 @@
             android:id="@+id/collapse_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:visibility="gone">
             <!--Icon of floating widget -->
             <ImageView
                 android:id="@+id/collapsed_iv"
@@ -32,7 +32,7 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:background="@color/back_Ground"
-            android:visibility="gone">
+            android:visibility="visible">
             <ImageView
                 android:layout_width="300dp"
                 android:layout_height="70dp"
@@ -46,7 +46,9 @@
                 android:textSize="15dp"
                 android:textColor="@color/textColor"
                 android:iconifiedByDefault="false"
-                />
+                >
+
+            </SearchView>
             <ListView
                 android:id="@+id/lsvInChatHead"
                 android:layout_width="300dp"
@@ -70,5 +72,4 @@
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
     </RelativeLayout>
-
 </FrameLayout>

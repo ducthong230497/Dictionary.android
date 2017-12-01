@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
@@ -31,6 +32,7 @@ import java.util.List;
  */
 
 public class OCR extends Activity {
+    Button btnRunOCR;
     // use for Acticity result
     final int OCR_RESULT = 2;
     // use for OCR
@@ -55,7 +57,7 @@ public class OCR extends Activity {
                 startActivityForResult(Camera, OCR_RESULT);
             }
         });
-        Button btnRunOCR = findViewById(R.id.btnOCR);
+        btnRunOCR = findViewById(R.id.btnOCR);
         btnRunOCR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +85,9 @@ public class OCR extends Activity {
                     translateLayout.putExtra("searchWord", OCRresult);
                     translateLayout.putExtra("definition", definition);
                     startActivity(translateLayout);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "this word doesn't have in our database", Toast.LENGTH_LONG);
                 }
 
             }
@@ -135,6 +140,7 @@ public class OCR extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == OCR_RESULT && resultCode == RESULT_OK && data != null){
+            btnRunOCR.setEnabled(true);
             Bundle extras = data.getExtras();
             Bitmap bitmap = extras.getParcelable("cropImage");
             imvPicture.setImageBitmap(bitmap);

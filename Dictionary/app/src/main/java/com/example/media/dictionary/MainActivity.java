@@ -30,8 +30,10 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     SearchView SearchWord;
     ImageView imvSetting;
     ListView lsvWord;
-    ListViewAdapter adapter;
-    ArrayList<String> arraylist = new ArrayList<String>();
+    ListViewAdapter adapter = null;
+    ListViewAdapter[] adapterlist = new ListViewAdapter[26];
+    ArrayList<String> arraylist = new ArrayList<String>();;
+    public ArrayList<String>[] wordist = (ArrayList<String>[])new ArrayList[26];
     String definition;
     final int a = 1;
     Button btnEngVieDict;
@@ -43,8 +45,9 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         Log.d(TAG, "onCreate");
 
         dictionaryDatabase = new DictionaryDatabase(this);
-        arraylist = dictionaryDatabase.getAllWords();
+        //arraylist = dictionaryDatabase.getAllWords();
         lsvWord = (ListView) findViewById((R.id.listViewSearch));
+
         //neu ko co final thi phai khai tao listview ngoai ham onCreate
         /*String[] values = new String[] { "AndroidListView",
                 "Adapterimplementation",
@@ -64,10 +67,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             arraylist.add(values[i]);
         }*/
 
-        // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(this, arraylist, DictionaryDatabase.listWord);
 
-        lsvWord.setAdapter(adapter);
 
         lsvWord.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -127,6 +127,12 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
     /**
      * Set and initialize the view elements.
      */
@@ -163,10 +169,21 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             lsvWord.setVisibility(View.INVISIBLE);
         }
         else{
-            String text = newText;
-            if (text.charAt(0) != ' '){
-                adapter.filter(text);
-                lsvWord.setVisibility(View.VISIBLE);
+            int i = (int)newText.charAt(0);
+            if (i >= 97){
+                if (adapterlist[i - 97]==null){
+                    String table = String.valueOf(newText.charAt(0));
+                    wordist[i - 97] = dictionaryDatabase.getWords(table);
+                    // Pass results to ListViewAdapter Class
+                    adapterlist[i - 97] = new ListViewAdapter(this, wordist[i - 97]);
+
+                    lsvWord.setAdapter(adapterlist[i - 97]);
+                }
+                String text = newText;
+                if (text.charAt(0) != ' '){
+                    adapterlist[i - 97].filter(text);
+                    lsvWord.setVisibility(View.VISIBLE);
+                }
             }
         }
         return false;
@@ -177,16 +194,8 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
 
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == LANGUAGE_SETTING_RESULT && resultCode == RESULT_OK){
-            Intent intent = new Intent();
             String LanguageCode = data.getStringExtra("LanguageCode");
             setLanguage(LanguageCode);
-            Log.d("Setting", LanguageCode);
-            intent.putExtra("LanguageCode", LanguageCode);
-            setResult(RESULT_OK, intent);
-            //finish();
-        }
-        else if(requestCode == OCR_RESULT && resultCode == RESULT_OK){
-
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.media.dictionary;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
@@ -9,16 +10,19 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 /**
  * Created by Media on 11/29/2017.
  */
 
-public class FloatingViewService extends Service {
+public class FloatingViewService extends Service{
     private WindowManager mWindowManager;
     private View mFloatingView;
+    SearchView searchViewInChatHead;
 
     public FloatingViewService() {
     }
@@ -67,7 +71,6 @@ public class FloatingViewService extends Service {
             }
         });
 
-        //Set the view while floating view is expanded.
 
 
 
@@ -81,7 +84,7 @@ public class FloatingViewService extends Service {
             }
         });
 
-        //Open the application on thi button click
+        //Open the mainactivity on this button click
         ImageView openButton = (ImageView) mFloatingView.findViewById(R.id.btn_open);
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +93,10 @@ public class FloatingViewService extends Service {
                 Intent intent = new Intent(FloatingViewService.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
+                // this will remove expandedView before mainactivity start
+                expandedView.setVisibility(View.GONE);
+                if (mFloatingView != null) mWindowManager.removeView(mFloatingView);
 
                 //close the service and remove view from the view hierarchy
                 stopSelf();
@@ -144,7 +151,13 @@ public class FloatingViewService extends Service {
                 return false;
             }
         });
+
+        searchViewInChatHead = mFloatingView.findViewById(R.id.searchInChatHead);
+        searchViewInChatHead.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
+
 
     /**
      * Detect if the floating view is collapsed or expanded.
@@ -153,11 +166,5 @@ public class FloatingViewService extends Service {
      */
     private boolean isViewCollapsed() {
         return mFloatingView == null || mFloatingView.findViewById(R.id.collapse_view).getVisibility() == View.VISIBLE;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mFloatingView != null) mWindowManager.removeView(mFloatingView);
     }
 }

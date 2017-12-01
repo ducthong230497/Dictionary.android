@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -29,15 +30,31 @@ public class DictionaryDatabase {
 
     private static final String DATABASE_NAME = "Dictionary.db";
     private static final String FTS_VIRTUAL_TABLE = "DICTIONARYTABLE";
-    private static final int DATABASE_VERSION = 25;
+    private static String[] TABLES;
+    private static final int DATABASE_VERSION = 30;
 
     public static ArrayList<String> listAllWord = new ArrayList<String>();
-    public static ArrayList<String>[] listWord = (ArrayList<String>[])new ArrayList[27];
+    public static ArrayList<String>[] listWord = (ArrayList<String>[])new ArrayList[26];
 
     private final DatabaseOpenHelper mDatabaseOpenHelper;
 
     public DictionaryDatabase(Context context) {
+        TABLES = getTablesName();
         mDatabaseOpenHelper = new DatabaseOpenHelper(context);
+    }
+
+    private String[] getTablesName() {
+        String[] tables = new String[27];
+        for (int i = 97; i <= 123; i++){
+            if (i == 123){
+                tables[i - 97] = "number";
+            }
+            else {
+                char a = (char)i;
+                tables[i - 97] = String.valueOf(a);
+            }
+        }
+        return tables;
     }
 
     private static class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -60,7 +77,15 @@ public class DictionaryDatabase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             mDatabase = db;
-            mDatabase.execSQL(FTS_TABLE_CREATE);
+            for (int i = 0; i < TABLES.length; i++){
+               String CREATE_QUERY =
+                        "CREATE VIRTUAL TABLE " + TABLES[i] +
+                                " USING fts3 (" +
+                                COL_WORD + ", " +
+                                COL_DEFINITION + ")";
+                mDatabase.execSQL(CREATE_QUERY);
+            }
+            //mDatabase.execSQL(FTS_TABLE_CREATE);
             loadDictionary();
         }
 
@@ -69,6 +94,8 @@ public class DictionaryDatabase {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS " + FTS_VIRTUAL_TABLE);
+            for(int i = 0; i < TABLES.length; i++)
+                db.execSQL("DROP TABLE IF EXISTS " + TABLES[i]);
             onCreate(db);
         }
 
@@ -95,6 +122,7 @@ public class DictionaryDatabase {
                 String line;
                 while ((line = (reader.readLine())) != null) {
                     if (!line.equals("")){
+                        char a = line.charAt(0);
                         if (line.charAt(0) == '@'){
                             if (WORD == null){
                                 WORD = line.replaceFirst("@", "");
@@ -142,8 +170,43 @@ public class DictionaryDatabase {
             ContentValues initialValues = new ContentValues();
             initialValues.put(COL_WORD, word);
             initialValues.put(COL_DEFINITION, definition);
+            String TableName = getTableName(word);
+            return mDatabase.insert(TableName, null, initialValues);
+        }
 
-            return mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
+        @NonNull
+        private String getTableName(String word) {
+            char c = word.charAt(0);
+            switch (word.charAt(0))
+            {
+                case 'a': return "a";
+                case 'b': return "b";
+                case 'c': return "c";
+                case 'd': return "d";
+                case 'e': return "e";
+                case 'f': return "f";
+                case 'g': return "g";
+                case 'h': return "h";
+                case 'i': return "i";
+                case 'j': return "j";
+                case 'k': return "k";
+                case 'l': return "l";
+                case 'm': return "m";
+                case 'n': return "n";
+                case 'o': return "o";
+                case 'p': return "p";
+                case 'q': return "q";
+                case 'r': return "r";
+                case 's': return "s";
+                case 't': return "t";
+                case 'u': return "u";
+                case 'v': return "v";
+                case 'w': return "w";
+                case 'x': return "y";
+                case 'y': return "w";
+                case 'z': return "z";
+                default: return "number";
+            }
         }
     }
     // mới thêm
@@ -151,14 +214,15 @@ public class DictionaryDatabase {
         String selection = COL_WORD + " = ?";
         String[] selectionArgs = new String[] {query};
 
-        return query(selection, selectionArgs, columns);
+        return query(selection, selectionArgs, columns, query);
     }
 
 
     @Nullable
-    private Cursor query(String selection, String[] selectionArgs, String[] columns) {
+    private Cursor query(String selection, String[] selectionArgs, String[] columns, String query) {
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
-        builder.setTables(FTS_VIRTUAL_TABLE);
+        String table  = String.valueOf(query.charAt(0));
+        builder.setTables(table);
 
         Cursor cursor = builder.query(mDatabaseOpenHelper.getReadableDatabase(),
                 columns, selection, selectionArgs, null, null, null);
@@ -178,6 +242,7 @@ public class DictionaryDatabase {
         builder.setTables(FTS_VIRTUAL_TABLE);
         Cursor c = builder.query(mDatabaseOpenHelper.getReadableDatabase(), new String[]{COL_WORD}, null, null, null, null, null);
         String lastWord = null;
+
         if (c != null){
             c.moveToFirst();
             while (c.isAfterLast() == false){
@@ -211,5 +276,30 @@ public class DictionaryDatabase {
             }
         }
         return listAllWord;
+    }
+
+    public ArrayList<String> getWords(String table){
+        SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
+        builder.setTables(table);
+        Cursor c = builder.query(mDatabaseOpenHelper.getReadableDatabase(), new String[]{COL_WORD}, null, null, null, null, null);
+        String lastWord = null;
+        ArrayList<String> list = new ArrayList<String>();
+        if (c != null){
+            c.moveToFirst();
+            while (c.isAfterLast() == false){
+                String word = c.getString(0);
+                if (lastWord == null || (!word.equals("") && lastWord.charAt(0) != word.charAt(0))){
+                    lastWord = word;
+                }
+                if (!word.equals("")){
+                    list.add(word);
+                }
+                c.moveToNext();
+
+                /*listAllWord.add(c.getString(0));
+                c.moveToNext();*/
+            }
+        }
+        return list;
     }
 }
