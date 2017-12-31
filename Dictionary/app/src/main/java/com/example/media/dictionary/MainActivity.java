@@ -2,10 +2,13 @@ package com.example.media.dictionary;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,11 +41,13 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     final int a = 1;
     Button btnEngVieDict;
     Button btnFloatingWidget;
+    Button btnFavoriteWord;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+
 
         dictionaryDatabase = new DictionaryDatabase(this);
         //arraylist = dictionaryDatabase.getAllWords();
@@ -115,6 +120,16 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             }
         });
 
+        btnFavoriteWord = (Button) findViewById(R.id.btnFavoriteWord);
+        btnFavoriteWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent favoriteWordIntent = new Intent(getApplicationContext(), FavoriteWordActivity.class);
+                startActivity(favoriteWordIntent);
+            }
+        });
+
+        // cái này của cái floating view
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
 
             //If the draw over permission is not available open the settings screen
@@ -154,6 +169,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         Intent translateLayout = new Intent(getApplicationContext(), com.example.media.dictionary.Translate.class);
         translateLayout.putExtra("searchWord", itemValue.toString());
         translateLayout.putExtra("definition", definition);
+        translateLayout.putExtra("parent", "Main");
         startActivity(translateLayout);
     }
 
@@ -182,6 +198,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
                 String text = newText;
                 if (text.charAt(0) != ' '){
                     adapterlist[i - 97].filter(text);
+                    lsvWord.setAdapter(adapterlist[i - 97]);
                     lsvWord.setVisibility(View.VISIBLE);
                 }
             }

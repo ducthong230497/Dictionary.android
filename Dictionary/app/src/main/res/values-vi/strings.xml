@@ -14,4 +14,6 @@
     <string name="Vietnamese_German_Dict">Việt - Đức</string>
     <string name="Camera">Máy ảnh</string>
     <string name="ChatHead">Tra nhanh</string>
+    <string name="FavoriteWord">Từ yêu thích</string>
+    <string name="AddFavoriteWord">Thêm vào từ yêu thích</string>
 </resources>

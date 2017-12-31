@@ -14,4 +14,6 @@
     <string name="Vietnamese_German_Dict">Vietnamesisch - Deutsch</string>
     <string name="Camera">Kamera</string>
     <string name="ChatHead">schnell suchen</string>
+    <string name="FavoriteWord">favorites Wörter</string>
+    <string name="AddFavoriteWord">hinzufügen zu favorit</string>
 </resources>

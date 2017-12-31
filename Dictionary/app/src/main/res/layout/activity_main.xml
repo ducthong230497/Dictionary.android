@@ -5,18 +5,15 @@
     android:layout_height="match_parent"
     android:background="#ecf0f1"
     tools:context=".MainActivity">
-
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#3498db"/>
-
-
+        android:layout_height="50dp"
+        android:background="#00b0ff"/>
     <SearchView
         android:id="@+id/editTextSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:queryHint="@string/editTextSearch_Hint"
         android:textSize="15dp"
         android:textColor="@color/textColor"
@@ -26,7 +23,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="50dp">
         <Button
             android:id="@+id/btnEngVieDict"
             android:layout_width="match_parent"
@@ -38,7 +35,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="90dp">
         <Button
             android:id="@+id/btn_Ger_Vie_Dict"
             android:layout_width="match_parent"
@@ -50,7 +47,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="130dp">
         <Button
             android:id="@+id/btn_Vie_Ger_Dict"
             android:layout_width="match_parent"
@@ -62,7 +59,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp">
+        android:layout_marginTop="170dp">
         <Button
             android:id="@+id/btnCamera"
             android:layout_width="match_parent"
@@ -74,7 +71,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp">
+        android:layout_marginTop="210dp">
         <Button
             android:id="@+id/btnFloatingWidget"
             android:layout_width="match_parent"
@@ -84,10 +81,22 @@
             />
     </FrameLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp">
+        <Button
+            android:id="@+id/btnFavoriteWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FavoriteWord"
+            android:textAllCaps="false"/>
+    </FrameLayout>
+
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="270dp">
+    android:layout_marginTop="290dp">
     <Button
         android:id="@+id/btnLanguages"
         android:layout_width="match_parent"
@@ -96,15 +105,12 @@
         android:textAllCaps="false"
         android:gravity="center"/>
 </FrameLayout>
-
-
-
-
+    
     <ListView
         android:id="@+id/listViewSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:visibility="invisible"
         android:background="#3498db"/>
 </FrameLayout>
