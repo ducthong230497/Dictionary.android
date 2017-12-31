@@ -34,7 +34,13 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="@string/AddFavoriteWord"
-            android:layout_below="@+id/txvWord"
+            />
+        <Button
+            android:id="@+id/btnDeleteFavoriteWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete from favorite"
+            android:textAllCaps="false"
             />
     </LinearLayout>
 </ScrollView>

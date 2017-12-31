@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,11 +28,19 @@ public class Translate extends AppCompatActivity {
     String definition;
     TextView txvWord;
     Button btnAddToFavorite;
+    Button btnDeleteFavorite;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.translate_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.addword);
+        getSupportActionBar().setCustomView(imageView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+
         final FavoriteWordDatabase favoriteWordDatabase = new FavoriteWordDatabase(getApplicationContext());
         final ArrayList<String> favoriteWord = favoriteWordDatabase.getFavoriteWords();
         // đọc từ
@@ -67,7 +77,7 @@ public class Translate extends AppCompatActivity {
                 //favoriteWordDatabase.addWord()
                 if (/*favoriteWord.size() > 0 && */!favoriteWord.contains(word)){
                     favoriteWord.add(word);
-                    long id = favoriteWordDatabase.addWord(word, 1);
+                    long id = favoriteWordDatabase.addWord(word);
                     if (id > 0){
                         Toast toast = Toast.makeText(getApplicationContext(), "successfully added", Toast.LENGTH_LONG);
                         toast.show();
@@ -82,6 +92,29 @@ public class Translate extends AppCompatActivity {
                     toast.show();
                 }
                 //finish();
+            }
+        });
+
+        btnDeleteFavorite = (Button) findViewById(R.id.btnDeleteFavoriteWord);
+        btnDeleteFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (/*favoriteWord.size() > 0 && */favoriteWord.contains(word)){
+                    favoriteWord.remove(word);
+                    long id = favoriteWordDatabase.deleteWord(word);
+                    if (id > 0){
+                        Toast toast = Toast.makeText(getApplicationContext(), "successfully deleted", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "delete failed", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+                else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "this word doesn't belong to your favorite list", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
     }

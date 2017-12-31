@@ -22,14 +22,5 @@
             android:layout_marginLeft="17dp"
             android:layout_marginTop="5dp"
             />
-        <ImageView
-            android:id="@+id/imgUpArrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/up_arrow"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            />
     </RelativeLayout>
 </LinearLayout>

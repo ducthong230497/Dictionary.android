@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,7 +50,11 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
-
+        getSupportActionBar().setTitle(null);
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.logo);
+        getSupportActionBar().setCustomView(imageView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         dictionaryDatabase = new DictionaryDatabase(this);
         adapterHistoryList = new ListViewHistoryAdapter(this, listHistoryWord);
@@ -93,7 +98,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         lsvHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String  itemValue    = (String) lsvWord.getItemAtPosition(i);
+                String  itemValue    = (String) lsvHistory.getItemAtPosition(i);
                 //Toast.makeText(getApplicationContext(),"Position :"+i+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                 //        .show();
                 //Log.d(TAG, "go here");

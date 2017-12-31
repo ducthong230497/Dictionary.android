@@ -28,11 +28,11 @@
 
         <activity android:name=".LanguagesSetting" android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".camera2" />
+        <activity android:name=".camera2" android:theme="@style/NoTitleBarTheme"/>
 
         <activity android:name=".OCR" android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".VietnameseEnglishActivity"/>
+        <activity android:name=".VietnameseEnglishActivity" android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".FavoriteWordActivity" android:parentActivityName=".MainActivity" />
 

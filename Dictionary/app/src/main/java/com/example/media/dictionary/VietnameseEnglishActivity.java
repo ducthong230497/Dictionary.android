@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
  * Created by Media on 11/26/2017.
  */
 
-public class VietnameseEnglishActivity extends Activity {
+public class VietnameseEnglishActivity extends AppCompatActivity {
     ArrayList<String> arrayList = new ArrayList<String>();
     ListViewAdapter adapter;
     ListView lsv_V_E_Words;
@@ -31,16 +32,16 @@ public class VietnameseEnglishActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vietnamese_english_dic);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final VietnameseEnglishDatabase vietnameseEnglishDatabase = new VietnameseEnglishDatabase(this);
         arrayList = vietnameseEnglishDatabase.getAllWords();
 
         adapter = new ListViewAdapter(getApplicationContext(),arrayList);
 
-        txv_V_E = findViewById(R.id.txv_V_E_Word);
-        frameLayout = findViewById(R.id.frame_V_E_Container);
+        txv_V_E = (TextView) findViewById(R.id.txv_V_E_Word);
+        frameLayout = (FrameLayout) findViewById(R.id.frame_V_E_Container);
 
-        lsv_V_E_Words = findViewById(R.id.listView_V_E_Search);
+        lsv_V_E_Words = (ListView) findViewById(R.id.listView_V_E_Search);
         lsv_V_E_Words.setAdapter(adapter);
         lsv_V_E_Words.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class VietnameseEnglishActivity extends Activity {
             }
         });
 
-        SearchView searchView_V_E = findViewById(R.id.editText_V_E_Search);
+        SearchView searchView_V_E = (SearchView) findViewById(R.id.editText_V_E_Search);
         searchView_V_E.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

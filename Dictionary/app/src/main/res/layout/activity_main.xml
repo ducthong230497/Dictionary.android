@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:queryHint="@string/editTextSearch_Hint"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/textColor"
         android:iconifiedByDefault="false"
         />
@@ -24,11 +24,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/vietnam"/>
         <Button
             android:id="@+id/btnEngVieDict"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/VietnameseDic"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton"
             android:textAllCaps="false"/>
     </FrameLayout>
 
@@ -36,11 +44,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp">
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ocr"/>
         <Button
             android:id="@+id/btnCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Camera"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton"
             android:textAllCaps="false"/>
     </FrameLayout>
 
@@ -53,6 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ChatHead"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton"
             android:textAllCaps="false"
             />
     </FrameLayout>
@@ -61,26 +79,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp">
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/favorite_words"/>
         <Button
             android:id="@+id/btnFavoriteWord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/FavoriteWord"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton"
             android:textAllCaps="false"/>
     </FrameLayout>
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="210dp">
-    <Button
-        android:id="@+id/btnLanguages"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_setting_language"
-        android:textAllCaps="false"
-        android:gravity="center"/>
-</FrameLayout>
+        android:layout_marginTop="210dp">
+        <Button
+            android:id="@+id/btnLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_setting_language"
+            android:textSize="20dp"
+            android:theme="@style/PrimaryFlatButton"
+            android:textAllCaps="false"
+            android:gravity="center"/>
+    </FrameLayout>
 
     <ListView
         android:id="@+id/listViewSearch"

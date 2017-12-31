@@ -86,7 +86,7 @@ public class FavoriteWordDatabase {
 
     }
     // mới thêm
-    public long addWord(String word, int count) {
+    public long addWord(String word) {
         mDatabaseOpenHelper.mDatabase = mDatabaseOpenHelper.getWritableDatabase();
         ContentValues initialValues = new ContentValues();
         initialValues.put(COL_WORD, word);
@@ -97,7 +97,19 @@ public class FavoriteWordDatabase {
         mDatabaseOpenHelper.mDatabase.delete(CountTable, "COUNT = ?", new String[]{str});
         mDatabaseOpenHelper.mDatabase.insert(CountTable, null, updateValues);
         return mDatabaseOpenHelper.mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
+    }
 
+    public long deleteWord(String word){
+        mDatabaseOpenHelper.mDatabase = mDatabaseOpenHelper.getWritableDatabase();
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(COL_WORD, word);
+        int n = getCount();
+        String str = Integer.toString(n);
+        ContentValues updateValues = new ContentValues();
+        updateValues.put(COL_COUNT, Integer.toString(n-1));
+        mDatabaseOpenHelper.mDatabase.delete(CountTable, "COUNT = ?", new String[]{str});
+        mDatabaseOpenHelper.mDatabase.insert(CountTable, null, updateValues);
+        return mDatabaseOpenHelper.mDatabase.delete(FTS_VIRTUAL_TABLE, "WORD = ?", new String[]{word});
     }
     //
     public Cursor getWordMatches(String query, String[] columns) {

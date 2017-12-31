@@ -127,8 +127,8 @@ public class camera2 extends AppCompatActivity {
                             //if (yTouch >= Resources.getSystem().getDisplayMetrics().widthPixels)
                             //view.getLayoutParams().height = yTouch - Resources.getSystem().getDisplayMetrics().widthPixels;
                             rectangleView.point2.set(xTouch, yTouch);
-                            //rectangleView.point1.set(   textureView.getWidth() - rectangleView.point2.x,
-                              //                          textureView.getHeight() - rectangleView.point2.y);
+                            rectangleView.point1.set(   textureView.getWidth() - rectangleView.point2.x,
+                                                        textureView.getHeight() - rectangleView.point2.y);
                             Log.d("point1", ""+rectangleView.point2.x + " " + rectangleView.point2.y);
                             TextView txv_X = (TextView) findViewById(R.id.txv_X);
                             TextView txv_Y = (TextView) findViewById(R.id.txv_Y);

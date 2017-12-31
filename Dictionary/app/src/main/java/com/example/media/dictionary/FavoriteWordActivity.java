@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,14 @@ public class FavoriteWordActivity extends AppCompatActivity {
         
 
         for (String str : favoriteWord) {
-            final Button btn = new Button(this);
-            btn.setLayoutParams(new SlidingPaneLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT));
+            final Button btn = new Button(this, null, R.style.PrimaryFlatButton);
+            btn.setLayoutParams(new SlidingPaneLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 80));
             btn.setText(str);
             btn.setAllCaps(false);
             btn.setId(View.generateViewId());
+            btn.setTextColor(getResources().getColor(R.color.colorPrimary));
+            btn.setGravity(Gravity.CENTER);
+            btn.setTextSize(20);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
