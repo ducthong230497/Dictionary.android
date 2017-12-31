@@ -28,13 +28,13 @@
 
         <activity android:name=".LanguagesSetting" android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".camera2" android:theme="@style/NoTitleBarTheme"/>
+        <activity android:name=".camera2" android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".OCR"/>
 
         <activity android:name=".VietnameseEnglishActivity"/>
 
-        <activity android:name=".FavoriteWordActivity"/>
+        <activity android:name=".FavoriteWordActivity" android:parentActivityName=".MainActivity" />
 
         <service android:name=".FloatingViewService"
             android:enabled="true"

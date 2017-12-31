@@ -32,34 +32,14 @@
             android:textAllCaps="false"/>
     </FrameLayout>
 
+
+
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp">
-        <Button
-            android:id="@+id/btn_Ger_Vie_Dict"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/German_Vietnamese_Dict"
-            android:textAllCaps="false"/>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp">
-        <Button
-            android:id="@+id/btn_Vie_Ger_Dict"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Vietnamese_German_Dict"
-            android:textAllCaps="false"/>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp">
         <Button
             android:id="@+id/btnCamera"
             android:layout_width="match_parent"
@@ -71,7 +51,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp">
+        android:layout_marginTop="130dp">
         <Button
             android:id="@+id/btnFloatingWidget"
             android:layout_width="match_parent"
@@ -84,7 +64,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp">
+        android:layout_marginTop="170dp">
         <Button
             android:id="@+id/btnFavoriteWord"
             android:layout_width="match_parent"
@@ -96,7 +76,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="290dp">
+    android:layout_marginTop="210dp">
     <Button
         android:id="@+id/btnLanguages"
         android:layout_width="match_parent"
@@ -105,7 +85,7 @@
         android:textAllCaps="false"
         android:gravity="center"/>
 </FrameLayout>
-    
+
     <ListView
         android:id="@+id/listViewSearch"
         android:layout_width="match_parent"

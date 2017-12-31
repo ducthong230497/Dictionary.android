@@ -3,6 +3,7 @@ package com.example.media.dictionary;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,7 +12,7 @@ import android.widget.Button;
  * Created by Lirus on 20.10.2017.
  */
 
-public class LanguagesSetting extends Activity {
+public class LanguagesSetting extends AppCompatActivity {
     Button btnSettingEnglish;
     Button btnSettingGerman;
     Button btnSettingVietnamese;
@@ -19,6 +20,7 @@ public class LanguagesSetting extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_languagesetting);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         btnSettingEnglish= (Button) findViewById(R.id.btnSettingEnglish);
         final Intent intent = new Intent();

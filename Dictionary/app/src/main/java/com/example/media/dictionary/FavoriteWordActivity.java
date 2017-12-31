@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.SlidingPaneLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * Created by Media on 12/29/2017.
  */
 
-public class FavoriteWordActivity extends Activity {
+public class FavoriteWordActivity extends AppCompatActivity {
     LinearLayout linearLayoutFavorieWord;
     DictionaryDatabase dictionaryDatabase;
     int NotificationID=0;
@@ -33,7 +34,9 @@ public class FavoriteWordActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_word);
-        linearLayoutFavorieWord = findViewById(R.id.linearLayoutFavoriteWord);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        linearLayoutFavorieWord = (LinearLayout) findViewById(R.id.linearLayoutFavoriteWord);
 
         dictionaryDatabase = new DictionaryDatabase(getApplicationContext());
         final FavoriteWordDatabase favoriteWordDatabase = new FavoriteWordDatabase(getApplicationContext());
