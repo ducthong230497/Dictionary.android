@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcel;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ import java.util.List;
  * Created by Media on 11/14/2017.
  */
 
-public class OCR extends Activity {
+public class OCR extends AppCompatActivity {
     Button btnRunOCR;
     // use for Acticity result
     final int OCR_RESULT = 2;
@@ -47,8 +48,9 @@ public class OCR extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocr);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-        imvPicture = findViewById(R.id.imvOcrPicture);
+        imvPicture = (ImageView) findViewById(R.id.imvOcrPicture);
         imvPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +59,7 @@ public class OCR extends Activity {
                 startActivityForResult(Camera, OCR_RESULT);
             }
         });
-        btnRunOCR = findViewById(R.id.btnOCR);
+        btnRunOCR = (Button) findViewById(R.id.btnOCR);
         btnRunOCR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -33,9 +33,11 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     SearchView SearchWord;
     ImageView imvSetting;
     ListView lsvWord;
+    ListView lsvHistory;
     ListViewAdapter adapter = null;
     ListViewAdapter[] adapterlist = new ListViewAdapter[26];
-    ArrayList<String> arraylist = new ArrayList<String>();;
+    ListViewHistoryAdapter adapterHistoryList;
+    ArrayList<String> listHistoryWord = new ArrayList<String>();
     public ArrayList<String>[] wordist = (ArrayList<String>[])new ArrayList[26];
     String definition;
     final int a = 1;
@@ -50,9 +52,11 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
 
 
         dictionaryDatabase = new DictionaryDatabase(this);
+        adapterHistoryList = new ListViewHistoryAdapter(this, listHistoryWord);
         //arraylist = dictionaryDatabase.getAllWords();
         lsvWord = (ListView) findViewById((R.id.listViewSearch));
-
+        lsvHistory = (ListView) findViewById(R.id.listViewHistory);
+        lsvHistory.setAdapter(adapterHistoryList);
         //neu ko co final thi phai khai tao listview ngoai ham onCreate
         /*String[] values = new String[] { "AndroidListView",
                 "Adapterimplementation",
@@ -81,11 +85,21 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
                 //Toast.makeText(getApplicationContext(),"Position :"+i+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                 //        .show();
                 //Log.d(TAG, "go here");
+                adapterHistoryList.addWordToHistory(itemValue);
                 startTranslate(itemValue);
             }
         });
 
-
+        lsvHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String  itemValue    = (String) lsvWord.getItemAtPosition(i);
+                //Toast.makeText(getApplicationContext(),"Position :"+i+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                //        .show();
+                //Log.d(TAG, "go here");
+                startTranslate(itemValue);
+            }
+        });
 
         SearchWord = (SearchView) findViewById(R.id.editTextSearch);
         SearchWord.setOnQueryTextListener(this);
@@ -175,14 +189,14 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         if (newText.length() == 0){
-            lsvWord.setVisibility(View.INVISIBLE);
+            lsvWord.setVisibility(View.GONE);
+            lsvHistory.setVisibility(View.VISIBLE);
         }
         else{
             int i = (int)newText.charAt(0);
@@ -199,6 +213,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
                 if (text.charAt(0) != ' '){
                     adapterlist[i - 97].filter(text);
                     lsvWord.setAdapter(adapterlist[i - 97]);
+                    lsvHistory.setVisibility(View.GONE);
                     lsvWord.setVisibility(View.VISIBLE);
                 }
             }
@@ -214,5 +229,16 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             String LanguageCode = data.getStringExtra("LanguageCode");
             setLanguage(LanguageCode);
         }
+    }
+
+    // override to close listview
+    @Override
+    public void onBackPressed() {
+        if (lsvWord.getVisibility() == View.VISIBLE || lsvHistory.getVisibility() == View.VISIBLE) {
+            lsvWord.setVisibility(View.INVISIBLE);
+            lsvHistory.setVisibility(View.INVISIBLE);
+        }
+        else
+            super.onBackPressed();
     }
 }

@@ -52,26 +52,13 @@ public class FavoriteWordActivity extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    sendNotification(view, btn.getText().toString());
                 }
             });
             linearLayoutFavorieWord.addView(btn);
         }
-
-        Button b = new Button(this);
-        b.setLayoutParams(new SlidingPaneLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT));
-        b.setText("asd");
-        b.setAllCaps(false);
-        b.setId(View.generateViewId());
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendNotification(view, "relevant");
-            }
-        });
-        linearLayoutFavorieWord.addView(b);
-
     }
+
     public void sendNotification(View view, String word) {
         Cursor c = dictionaryDatabase.getWordMatches(word, null);
         String definition="";
@@ -82,8 +69,8 @@ public class FavoriteWordActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_open)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle(word)
+                        .setContentText(definition);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, Translate.class);
         resultIntent.putExtra("searchWord", word.toString());
@@ -108,6 +95,7 @@ public class FavoriteWordActivity extends AppCompatActivity {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
         mNotificationManager.notify(NotificationID, mBuilder.build());
+        NotificationID++;
     }
 
     void startTranslate(String itemValue){

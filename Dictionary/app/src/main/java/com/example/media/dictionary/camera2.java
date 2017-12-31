@@ -87,7 +87,7 @@ public class camera2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera2);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
 
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;

@@ -32,10 +32,6 @@
             android:textAllCaps="false"/>
     </FrameLayout>
 
-
-
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,6 +87,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:visibility="invisible"
+        android:visibility="gone"
+        android:background="#3498db"/>
+    <ListView
+        android:id="@+id/listViewHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
         android:background="#3498db"/>
 </FrameLayout>
