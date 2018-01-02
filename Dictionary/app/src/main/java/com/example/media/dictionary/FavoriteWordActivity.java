@@ -46,13 +46,16 @@ public class FavoriteWordActivity extends AppCompatActivity {
 
         for (String str : favoriteWord) {
             final Button btn = new Button(this, null, R.style.PrimaryFlatButton);
-            btn.setLayoutParams(new SlidingPaneLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 80));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 80);
+            params.setMargins(20, 10, 0, 0);
+            btn.setLayoutParams(params);
             btn.setText(str);
             btn.setAllCaps(false);
             btn.setId(View.generateViewId());
             btn.setTextColor(getResources().getColor(R.color.colorPrimary));
             btn.setGravity(Gravity.LEFT);
             btn.setTextSize(20);
+
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

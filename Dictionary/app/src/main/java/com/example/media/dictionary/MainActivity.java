@@ -2,8 +2,6 @@ package com.example.media.dictionary;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -111,14 +108,14 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         SearchWord.setOnQueryTextListener(this);
 
 
-        Button btnLanguages = (Button) findViewById(R.id.btnLanguages);
+        /*Button btnLanguages = (Button) findViewById(R.id.btnLanguages);
         btnLanguages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent languageSettingInten = new Intent(getApplicationContext(), LanguagesSetting.class);
                 startActivityForResult(languageSettingInten, LANGUAGE_SETTING_RESULT);
             }
-        });
+        });*/
 
 
         Button btnCamera = (Button) findViewById(R.id.btnCamera);
@@ -153,7 +150,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSetting = new Intent(getApplicationContext(), SettingsActivity.class);
+                Intent intentSetting = new Intent(getApplicationContext(), Setting.class);
                 startActivity(intentSetting);
             }
         });
@@ -184,7 +181,9 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         findViewById(R.id.btnFloatingWidget).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startService(new Intent(MainActivity.this, FloatingViewService.class));
+                Intent floatingViewWidget = new Intent(MainActivity.this, FloatingViewService.class);
+                //floatingViewWidget.setFlags()
+                startService(floatingViewWidget);
                 finish();
             }
         });

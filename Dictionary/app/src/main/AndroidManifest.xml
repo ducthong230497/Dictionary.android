@@ -29,23 +29,33 @@
         </activity>
         <activity
             android:name=".Translate"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Setting" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelTranslate"/>
+
+        <activity android:name=".Setting"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelSetting"/>
+
         <activity
             android:name=".LanguagesSetting"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Setting" />
         <activity
             android:name=".camera2"
             android:theme="@style/NoTitleBarTheme" />
         <activity
             android:name=".OCR"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelOCR"
+            />
         <activity
             android:name=".VietnameseEnglishActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelVietnamEng"/>
+
         <activity
             android:name=".FavoriteWordActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelFavoriteWord"/>
 
         <service
             android:name=".FloatingViewService"
@@ -54,12 +64,13 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings1"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value="com.example.media.dictionary.MainActivity" />
         </activity>
+
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -79,11 +80,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 }
 
-            }else if (true){
-
-            }
-
-            else {
+            } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
                 preference.setSummary(stringValue);
@@ -140,6 +137,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            if (!super.onMenuItemSelected(featureId, item)) {
+                NavUtils.navigateUpFromSameTask(this);
+            }
+            return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -188,9 +197,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //bindPreferenceSummaryToValue(findPreference("example_text"));
             //bindPreferenceSummaryToValue(findPreference("example_list"));
 
-            /*bindPreferenceSummaryToValue(findPreference("language"));
-            bindPreferenceSummaryToValue(findPreference("light_theme"));
-            bindPreferenceSummaryToValue(findPreference("pronounce"));*/
+            bindPreferenceSummaryToValue(findPreference("key_language"));
+            /*bindPreferenceSummaryToValue(findPreference("key_light_theme"));
+            bindPreferenceSummaryToValue(findPreference("key_pronounce"));*/
         }
 
         @Override
