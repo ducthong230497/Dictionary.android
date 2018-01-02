@@ -22,12 +22,29 @@
             android:scrollbars="vertical"/>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnStartTranslateText"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/PrimaryFlatButton"
-        android:text="@string/TranslateText"/>
-
-
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnStartTranslateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/PrimaryFlatButton"
+            android:layout_weight="1"
+            android:text="@string/TranslateText"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="@string/speakText"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txvTranslateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>
