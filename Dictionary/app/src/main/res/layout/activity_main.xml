@@ -44,7 +44,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="260dp">
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_marginLeft="50dp"
@@ -123,7 +123,29 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp">
+        android:layout_marginTop="110dp">
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/setting"/>
+        <Button
+            android:id="@+id/btnTranslateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/TranslateText"
+            android:textSize="17dp"
+            android:background="@drawable/bit"
+            android:theme="@style/PrimaryFlatButton"
+            android:textAllCaps="false"
+            android:gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="310dp">
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_marginLeft="50dp"

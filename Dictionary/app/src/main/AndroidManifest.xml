@@ -71,6 +71,9 @@
                 android:value="com.example.media.dictionary.MainActivity" />
         </activity>
 
+        <activity android:name=".TranslateText"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/labelTranslateText"/>
     </application>
 
 </manifest>

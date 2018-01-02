@@ -43,6 +43,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     Button btnFloatingWidget;
     Button btnFavoriteWord;
     Button btnSetting;
+    Button btnTranslateText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +153,15 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             public void onClick(View view) {
                 Intent intentSetting = new Intent(getApplicationContext(), Setting.class);
                 startActivity(intentSetting);
+            }
+        });
+
+        btnTranslateText = (Button) findViewById(R.id.btnTranslateText);
+        btnTranslateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent translateTextIntent = new Intent(getApplicationContext(), TranslateText.class);
+                startActivity(translateTextIntent);
             }
         });
 
