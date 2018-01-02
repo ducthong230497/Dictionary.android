@@ -45,6 +45,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
     Button btnEngVieDict;
     Button btnFloatingWidget;
     Button btnFavoriteWord;
+    Button btnSetting;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
         imageView.setImageResource(R.drawable.logo);
         getSupportActionBar().setCustomView(imageView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-
+        getApplication().setTheme(R.style.AppThemeDark);
         dictionaryDatabase = new DictionaryDatabase(this);
         adapterHistoryList = new ListViewHistoryAdapter(this, listHistoryWord);
         //arraylist = dictionaryDatabase.getAllWords();
@@ -145,6 +146,15 @@ public class MainActivity extends LocalizationActivity implements SearchView.OnQ
             public void onClick(View view) {
                 Intent favoriteWordIntent = new Intent(getApplicationContext(), FavoriteWordActivity.class);
                 startActivity(favoriteWordIntent);
+            }
+        });
+
+        btnSetting = (Button) findViewById(R.id.btnSetting);
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSetting = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intentSetting);
             }
         });
 

@@ -16,4 +16,13 @@
     <string name="ChatHead">Tra nhanh</string>
     <string name="FavoriteWord">Từ yêu thích</string>
     <string name="AddFavoriteWord">Thêm vào từ yêu thích</string>
+    <string name="Setting">Cài đặt</string>
+    <string name="title_activity_settings">Cài đặt</string>
+    <string name="default_summary">Vietnamesisch</string>
+    <string name="summary_Light_theme">Sử dụng theme sáng</string>
+    <string name="title_Light_Theme">Theme sáng</string>
+    <string name="title_language_category">Ngôn ngữ</string>
+    <string name="pref_header_information">Thông tin phần mềm</string>
+    <string name="title_pronouce_category">Phát âm</string>
+    <string name="title_pronounce">Tự động phát âm khi dịch</string>
 </resources>

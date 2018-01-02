@@ -16,4 +16,13 @@
     <string name="ChatHead">schnell suchen</string>
     <string name="FavoriteWord">favorites Wörter</string>
     <string name="AddFavoriteWord">hinzufügen zu favorit</string>
+    <string name="Setting">Eingstellung</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="default_summary">Englisch</string>
+    <string name="summary_Light_theme">benutzen lichtes Thema</string>
+    <string name="title_language_category">Sprachen</string>
+    <string name="title_Light_Theme">lichtes Thema</string>
+    <string name="pref_header_information">Software Info</string>
+    <string name="title_pronouce_category">aussprechen</string>
+    <string name="title_pronounce">automatisch beim Übersetzen aussprechen</string>
 </resources>

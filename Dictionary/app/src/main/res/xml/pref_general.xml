@@ -1,0 +1,34 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!---->
+
+
+ <PreferenceCategory
+        android:title="@string/title_language_category">
+        <ListPreference
+            android:key="language"
+            android:title="@string/title_language_category"
+            android:entries="@array/pref_language_list_titles"
+            android:entryValues="@array/pref_language_list_values"
+            android:defaultValue="0"
+            android:summary="@string/default_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/title_theme_category">
+        <SwitchPreference
+            android:id="@+id/switchTheme"
+            android:defaultValue="true"
+            android:key="light_theme"
+            android:title="@string/title_Light_Theme"
+            android:summary="@string/summary_Light_theme"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/title_pronouce_category">
+        <CheckBoxPreference
+            android:title="@string/title_pronounce"
+            android:key="pronounce"/>
+    </PreferenceCategory>
+</PreferenceScreen>

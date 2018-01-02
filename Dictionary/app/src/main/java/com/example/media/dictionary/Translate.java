@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,16 +30,17 @@ public class Translate extends AppCompatActivity {
     TextView txvWord;
     Button btnAddToFavorite;
     Button btnDeleteFavorite;
+    FloatingActionButton btnfabFavorite;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.translate_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ImageView imageView = new ImageView(getApplicationContext());
+        /*ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.addword);
         getSupportActionBar().setCustomView(imageView, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);*/
 
 
         final FavoriteWordDatabase favoriteWordDatabase = new FavoriteWordDatabase(getApplicationContext());
@@ -117,6 +119,43 @@ public class Translate extends AppCompatActivity {
                 }
             }
         });
+
+        /*btnfabFavorite = (FloatingActionButton) findViewById(R.id.btnfabAddWord);
+        btnfabFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!favoriteWord.contains(word)){
+                    favoriteWord.add(word);
+                    long id = favoriteWordDatabase.addWord(word);
+                    if (id > 0){
+                        btnfabFavorite.setImageResource(R.drawable.eraseword);
+                        Toast toast = Toast.makeText(getApplicationContext(), "successfully added", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "added failed", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+                else if (favoriteWord.contains(word)){
+                    favoriteWord.remove(word);
+                    long id = favoriteWordDatabase.deleteWord(word);
+                    if (id > 0){
+                        btnfabFavorite.setImageResource(R.drawable.addword);
+                        Toast toast = Toast.makeText(getApplicationContext(), "successfully deleted", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "delete failed", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+                else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "this word doesn't belong to your favorite list", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });*/
     }
 
     @Nullable

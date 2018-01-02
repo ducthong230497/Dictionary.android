@@ -10,9 +10,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/button_setting_language"
-    android:textAlignment="center"
+    android:gravity=""
     android:textAllCaps="false"
     android:drawableLeft="@drawable/language"
+    android:theme="@style/PrimaryFlatButton"
+
     />
 
 </LinearLayout>

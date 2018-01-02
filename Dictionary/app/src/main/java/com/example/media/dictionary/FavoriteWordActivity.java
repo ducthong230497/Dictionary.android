@@ -51,7 +51,7 @@ public class FavoriteWordActivity extends AppCompatActivity {
             btn.setAllCaps(false);
             btn.setId(View.generateViewId());
             btn.setTextColor(getResources().getColor(R.color.colorPrimary));
-            btn.setGravity(Gravity.CENTER);
+            btn.setGravity(Gravity.LEFT);
             btn.setTextSize(20);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override

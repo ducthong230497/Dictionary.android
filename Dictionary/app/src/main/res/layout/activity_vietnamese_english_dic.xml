@@ -10,15 +10,15 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#3498db"/>
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:background="#00b0ff"/>
 
 
         <SearchView
             android:id="@+id/editText_V_E_Search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:queryHint="@string/editTextSearch_Hint"
             android:textSize="15dp"
             android:textColor="@color/textColor"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="50dp">
             <TextView
                 android:id="@+id/txv_V_E_Word"
                 android:layout_width="wrap_content"
@@ -41,8 +41,8 @@
             android:id="@+id/listView_V_E_Search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:visibility="invisible"
-            android:background="#3498db"/>
+            android:background="#00b0ff"/>
     </FrameLayout>
 </FrameLayout>
