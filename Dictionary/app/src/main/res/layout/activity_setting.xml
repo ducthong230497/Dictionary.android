@@ -34,6 +34,13 @@
             />
     </LinearLayout>
 
+    <SeekBar
+        android:id="@+id/seekbarBrightness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="255"
+        />
+
     <Button
         android:id="@+id/btnSoftInfo"
         android:layout_width="match_parent"

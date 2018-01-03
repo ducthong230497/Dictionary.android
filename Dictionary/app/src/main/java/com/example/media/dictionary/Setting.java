@@ -1,18 +1,29 @@
 package com.example.media.dictionary;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.provider.Settings.System;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import android.app.Activity;
+import android.provider.Settings.SettingNotFoundException;
+import android.view.WindowManager.LayoutParams;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.transitionseverywhere.Slide;
@@ -29,6 +40,10 @@ public class Setting extends LocalizationActivity {
     ImageView imvSoftInfo;
     boolean imvSoftInfoVisible = false;
     Switch swTheme;
+    SeekBar seekBarBrightness;
+    int currentBrightness;
+    Window window;
+    ContentResolver contentResolver;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -82,6 +97,43 @@ public class Setting extends LocalizationActivity {
                 else {
                     getApplication().setTheme(R.style.AppThemeDark);
                 }
+            }
+        });
+
+        window = getWindow();
+        contentResolver = getContentResolver();
+        currentBrightness = System.getInt(getApplicationContext().getContentResolver(),System.SCREEN_BRIGHTNESS,0);
+        seekBarBrightness = (SeekBar) findViewById(R.id.seekbarBrightness);
+        seekBarBrightness.setMax(255);
+        seekBarBrightness.setProgress(currentBrightness);
+        seekBarBrightness.setKeyProgressIncrement(1);
+        seekBarBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                currentBrightness = i <= 20 ? 20 : i;
+                // cập nhập textView
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                ContentResolver contentResolver = getContentResolver();
+                boolean canWrite = Settings.System.canWrite(getApplicationContext());
+                if (canWrite){
+                    Settings.System.putInt(contentResolver,Settings.System.SCREEN_BRIGHTNESS,currentBrightness);
+                }
+                else {
+                    startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS));
+                }
+
+                WindowManager.LayoutParams layoutParams = window.getAttributes();
+                layoutParams.screenBrightness = currentBrightness ;
+                window.setAttributes(layoutParams);
             }
         });
     }
