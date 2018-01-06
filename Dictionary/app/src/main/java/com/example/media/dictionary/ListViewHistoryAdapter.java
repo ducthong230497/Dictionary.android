@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by Media on 12/31/2017.
- */
+
 
 public class ListViewHistoryAdapter extends BaseAdapter {
     Context mContext;

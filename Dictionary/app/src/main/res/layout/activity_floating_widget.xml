@@ -23,7 +23,7 @@
                 android:id="@+id/collapsed_iv"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/images"
+                android:src="@mipmap/ic_launcher_round"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -33,22 +33,31 @@
             android:layout_height="300dp"
             android:background="@color/back_Ground"
             android:visibility="visible">
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:background="@color/back_Ground"/>
 
             <SearchView
                 android:id="@+id/searchInChatHead"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:queryHint="@string/editTextSearch_Hint"
+                android:visibility="visible"
                 android:textSize="15dp"
                 android:textColor="@color/textColor"
                 android:iconifiedByDefault="false"
                 >
 
             </SearchView>
+            <EditText
+                android:id="@+id/edtInChatHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/textColor"
+                android:hint="sadkasjkasjdk"
+                android:text="ajashdjashd"
+                android:visibility="gone"
+                android:textSize="15dp"
+                android:textColor="@color/textColor"
+
+                android:iconifiedByDefault="false" />
             <ListView
                 android:id="@+id/lsvInChatHead"
                 android:layout_width="300dp"

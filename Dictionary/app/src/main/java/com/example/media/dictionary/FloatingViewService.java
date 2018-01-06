@@ -11,13 +11,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-/**
- * Created by Media on 11/29/2017.
- */
+
 
 public class FloatingViewService extends Service{
     private WindowManager mWindowManager;
@@ -84,8 +83,16 @@ public class FloatingViewService extends Service{
             }
         });
 
+
         //Open the mainactivity on this button click
         ImageView openButton = (ImageView) mFloatingView.findViewById(R.id.btn_open);
+        openButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int a=0;
+                return false;
+            }
+        });
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,9 +160,27 @@ public class FloatingViewService extends Service{
         });
 
         searchViewInChatHead = mFloatingView.findViewById(R.id.searchInChatHead);
+        searchViewInChatHead.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                return false;
+            }
+        });
+
+        EditText edt = mFloatingView.findViewById(R.id.edtInChatHead);
+        edt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int a;
+                return false;
+            }
+        });
+
         searchViewInChatHead.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
     }
 
 

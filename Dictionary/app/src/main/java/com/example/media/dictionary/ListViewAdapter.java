@@ -1,8 +1,6 @@
 package com.example.media.dictionary;
 
-/**
- * Created by Media on 11/23/2017.
- */
+
 
 import android.content.Context;
 import android.view.LayoutInflater;

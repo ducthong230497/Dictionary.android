@@ -10,9 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by Media on 11/1/2017.
- */
+
 
 public class RectangleView extends View {
     private Paint mPaint;

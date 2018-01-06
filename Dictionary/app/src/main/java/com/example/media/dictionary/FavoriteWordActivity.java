@@ -4,11 +4,13 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.SlidingPaneLayout;
@@ -20,17 +22,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.transitionseverywhere.ChangeBounds;
+import com.transitionseverywhere.Slide;
+import com.transitionseverywhere.TransitionManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-/**
- * Created by Media on 12/29/2017.
- */
+
 
 public class FavoriteWordActivity extends AppCompatActivity {
     LinearLayout linearLayoutFavorieWord;
     DictionaryDatabase dictionaryDatabase;
     int NotificationID=0;
+    boolean isSorted=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +50,7 @@ public class FavoriteWordActivity extends AppCompatActivity {
         final FavoriteWordDatabase favoriteWordDatabase = new FavoriteWordDatabase(getApplicationContext());
         final ArrayList<String> favoriteWord = favoriteWordDatabase.getFavoriteWords();
         
-
+        final ArrayList<String> id = new ArrayList<String>();
         for (String str : favoriteWord) {
             final Button btn = new Button(this, null, R.style.PrimaryFlatButton);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 80);
@@ -52,6 +59,7 @@ public class FavoriteWordActivity extends AppCompatActivity {
             btn.setText(str);
             btn.setAllCaps(false);
             btn.setId(View.generateViewId());
+            id.add(Integer.toString(btn.getId()));
             btn.setTextColor(getResources().getColor(R.color.colorPrimary));
             btn.setGravity(Gravity.LEFT);
             btn.setTextSize(20);
@@ -64,6 +72,46 @@ public class FavoriteWordActivity extends AppCompatActivity {
             });
             linearLayoutFavorieWord.addView(btn);
         }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.sapxep);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TransitionManager.beginDelayedTransition(linearLayoutFavorieWord);
+                Collections.shuffle(id);
+                linearLayoutFavorieWord.removeAllViews();
+                if (!isSorted){
+                    Collections.sort(favoriteWord);
+                    isSorted=true;
+                }
+                else
+                {
+                    Collections.reverse(favoriteWord);
+                }
+
+                for (String str : favoriteWord) {
+                    final Button btn = new Button(getApplicationContext(), null, R.style.PrimaryFlatButton);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 80);
+                    params.setMargins(20, 10, 0, 0);
+                    btn.setLayoutParams(params);
+                    btn.setText(str);
+                    btn.setAllCaps(false);
+                    btn.setId(View.generateViewId());
+                    btn.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    btn.setGravity(Gravity.LEFT);
+                    btn.setTextSize(20);
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            sendNotification(view, btn.getText().toString());
+                        }
+                    });
+                    linearLayoutFavorieWord.addView(btn);
+
+                }
+            }
+        });
     }
 
     public void sendNotification(View view, String word) {
@@ -75,7 +123,7 @@ public class FavoriteWordActivity extends AppCompatActivity {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_open)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle(word)
                         .setContentText(definition);
 // Creates an explicit intent for an Activity in your app

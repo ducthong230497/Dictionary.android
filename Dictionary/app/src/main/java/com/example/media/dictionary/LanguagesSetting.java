@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-/**
- * Created by Lirus on 20.10.2017.
- */
+
 
 public class LanguagesSetting extends AppCompatActivity {
     Button btnSettingEnglish;

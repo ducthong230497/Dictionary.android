@@ -25,4 +25,31 @@
     <string name="pref_header_information">Software Info</string>
     <string name="title_pronouce_category">aussprechen</string>
     <string name="title_pronounce">automatisch beim Übersetzen aussprechen</string>
+    <string name="labelFavoriteWord">favorites Wörter</string>
+    <string name="labelOCR">optische Zeichenerkennung</string>
+    <string name="labelSetting">Einstellungen</string>
+    <string name="labelTranslate">Englisch - Vietnamesisch</string>
+    <string name="labelTranslateText">ubersetzen Text</string>
+    <string name="TranslateText">ubersetzen Text</string>
+    <string name="labelVietnamEng">Vietnamesisch - Englisch</string>
+    <string name="speakText">Sprechen</string>
+    <string name="title_activity_settings1">Einstellungen</string>
+    <string name="brightness">Hellichkeit</string>
+    <string name="pref_title_vibrate" translatable="false">vibrate</string>
+    <string name="pref_title_system_sync_settings">a</string>
+    <string name="pref_title_sync_frequency">a</string>
+    <string name="pref_title_social_recommendations">a</string>
+    <string name="pref_title_ringtone">a</string>
+    <string name="pref_default_display_name">a</string>
+    <string name="pref_description_social_recommendations">a</string>
+    <string name="pref_header_data_sync">a</string>
+    <string name="pref_header_general">a</string>
+    <string name="pref_header_notifications">a</string>
+    <string name="pref_ringtone_silent">a</string>
+    <string name="pref_title_add_friends_to_messages">a</string>
+    <string name="pref_title_display_name">a</string>
+    <string name="pref_title_new_message_notifications">a</string>
+    <string name="title_theme_category">a</string>
+    <string name="title_information">a</string>
+    <string name="summary_information">a</string>
 </resources>

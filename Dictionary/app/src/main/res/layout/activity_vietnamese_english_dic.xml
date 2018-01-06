@@ -36,6 +36,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
                 />
+            <LinearLayout
+                android:id="@+id/layoutVieEng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
         </FrameLayout>
         <ListView
             android:id="@+id/listView_V_E_Search"

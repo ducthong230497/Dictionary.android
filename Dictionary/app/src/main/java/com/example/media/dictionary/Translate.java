@@ -24,9 +24,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-/**
- * Created by Lirus on 19.10.2017.
- */
+
 
 public class Translate extends AppCompatActivity {
     TextToSpeech textToSpeech;

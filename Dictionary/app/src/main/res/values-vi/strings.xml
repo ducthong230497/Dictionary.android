@@ -25,4 +25,31 @@
     <string name="pref_header_information">Thông tin phần mềm</string>
     <string name="title_pronouce_category">Phát âm</string>
     <string name="title_pronounce">Tự động phát âm khi dịch</string>
+    <string name="labelFavoriteWord">Từ yêu thích</string>
+    <string name="labelSetting">Cài đặt</string>
+    <string name="labelTranslate">Anh - Việt</string>
+    <string name="labelTranslateText">Dịch văn bản</string>
+    <string name="TranslateText">Dịch văn bản</string>
+    <string name="labelVietnamEng">Việt - Anh</string>
+    <string name="speakText">Đọc</string>
+    <string name="title_activity_settings1">Cài đặt</string>
+    <string name="labelOCR">Nhận diện kí tự quang học</string>
+    <string name="brightness">Độ sáng</string>
+    <string name="pref_title_vibrate" translatable="false">vvibare</string>
+    <string name="pref_title_system_sync_settings">a</string>
+    <string name="pref_title_sync_frequency">a</string>
+    <string name="pref_title_social_recommendations">a</string>
+    <string name="pref_title_ringtone">a</string>
+    <string name="pref_default_display_name">a</string>
+    <string name="pref_description_social_recommendations">a</string>
+    <string name="pref_header_data_sync">a</string>
+    <string name="pref_header_general">a</string>
+    <string name="pref_header_notifications">a</string>
+    <string name="pref_ringtone_silent">a</string>
+    <string name="pref_title_add_friends_to_messages">a</string>
+    <string name="pref_title_display_name">a</string>
+    <string name="pref_title_new_message_notifications">a</string>
+    <string name="title_theme_category">a</string>
+    <string name="title_information">a</string>
+    <string name="summary_information">a</string>
 </resources>

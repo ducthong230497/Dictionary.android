@@ -16,9 +16,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-/**
- * Created by Media on 11/26/2017.
- */
 
 public class VietnameseEnglishDatabase {
     private static final String TAG = "EngVieDatabase";

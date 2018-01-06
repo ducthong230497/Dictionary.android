@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.System;
+import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,14 +25,13 @@ import android.app.Activity;
 import android.provider.Settings.SettingNotFoundException;
 import android.view.WindowManager.LayoutParams;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.transitionseverywhere.Slide;
 import com.transitionseverywhere.TransitionManager;
 
-/**
- * Created by Lirus on 20.10.2017.
- */
+
 
 public class Setting extends LocalizationActivity {
     final int LANGUAGE_SETTING_RESULT = 1;
@@ -110,18 +110,8 @@ public class Setting extends LocalizationActivity {
         seekBarBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                currentBrightness = i <= 20 ? 20 : i;
+                currentBrightness = i;
                 // cập nhập textView
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 ContentResolver contentResolver = getContentResolver();
                 boolean canWrite = Settings.System.canWrite(getApplicationContext());
                 if (canWrite){
@@ -134,6 +124,16 @@ public class Setting extends LocalizationActivity {
                 WindowManager.LayoutParams layoutParams = window.getAttributes();
                 layoutParams.screenBrightness = currentBrightness ;
                 window.setAttributes(layoutParams);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(getApplicationContext(), "brightness: " + Integer.toString(currentBrightness/255 * 100), Toast.LENGTH_LONG).show();
             }
         });
     }

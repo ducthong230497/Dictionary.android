@@ -1,6 +1,9 @@
 package com.example.media.dictionary;
 
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +42,7 @@ public class TranslateText extends AppCompatActivity {
     Button btnStartTranslateText;
     EditText edtText;
     TextView txvTranslateText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +56,45 @@ public class TranslateText extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), edtText.getText().toString(), Toast.LENGTH_LONG).show();
                 String input = edtText.getText().toString();
-                new Translate().execute(input);
+                String result="";
+                try{
+                   result = Translator.translate("vi",input);
+                }
+                catch (Exception e){
+
+                }
+                if (!result.equals(""))
+                {
+                    txvTranslateText = (TextView) findViewById(R.id.txvTranslateText);
+                    txvTranslateText.setText(result);
+                }
+                //new Translate().execute(input);
             }
         });
     }
-
+    private boolean CheckConnection() {
+// Bộ quản lí kết nối
+        ConnectivityManager connManager = (ConnectivityManager)
+                this.getSystemService(Context.CONNECTIVITY_SERVICE);
+// Thông tin mạng
+        NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+        if (networkInfo == null) {
+            Toast.makeText(this, "Thông tin mạng không tồn tại",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (!networkInfo.isConnected()) {
+            Toast.makeText(this, "Không kết nối được mạng", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (!networkInfo.isAvailable()) {
+            Toast.makeText(this, "Mạng không được kích hoạt",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        Toast.makeText(this, "Mạng đang hoạt động", Toast.LENGTH_LONG).show();
+        return true;
+    }
 
     class Translate extends AsyncTask<String,String,String> {
         String string = "";
@@ -65,12 +109,45 @@ public class TranslateText extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
         }
-
+        public InputStream OpenHttpConnection(String urlString) throws IOException
+        {
+            InputStream in = null;
+            try{
+                URL url = new URL(urlString);
+                URLConnection urlConnection = url.openConnection();
+                urlConnection.setRequestProperty("User-Agent", "Something Else");
+                in = urlConnection.getInputStream();
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            return in;
+        }
         @Override
         protected String doInBackground(String... params) {
+
             InputStream is = null;
             BufferedReader bufferedReader = null;
 
+
+            /*Document document = null;*/
+           /* try {
+                String translateUrl =
+                        "https://translate.google.com/#en/vi/"
+                                + params[0]*//*URLEncoder.encode(params[0],"UTF-8")*//*;
+                Document document = Jsoup.connect(translateUrl).get();
+
+                Elements subjectElements = document.select("span#result_box");
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+            String resultText="";
             try {
                 String translateUrl =
                         "https://translate.google.com/#en/vi/"
@@ -78,7 +155,7 @@ public class TranslateText extends AppCompatActivity {
                 URL url = new URL(translateUrl);
                 URLConnection urlConnection = url.openConnection();
                 urlConnection.setRequestProperty("User-Agent", "Something Else");
-                is = urlConnection.getInputStream();
+                is = OpenHttpConnection(translateUrl);
 
                 bufferedReader = new BufferedReader(new InputStreamReader(is));
 
@@ -86,6 +163,12 @@ public class TranslateText extends AppCompatActivity {
                 while ((line = bufferedReader.readLine()) != null) {
                     string += line;
                 }
+               /* Document doc=Jsoup.parse(string);
+               Element subjectElements = doc.getElementById("result_box");
+
+                   resultText=subjectElements.text();*/
+
+                is.close();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (ProtocolException e) {
@@ -98,7 +181,6 @@ public class TranslateText extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-
             txvTranslateText = (TextView) findViewById(R.id.txvTranslateText);
             s = s.replace("[[","\n").replace("]]","\n").replace("],[","\n");
 

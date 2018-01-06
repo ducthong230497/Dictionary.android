@@ -20,18 +20,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="12dp"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp">
+
         <Switch
             android:id="@+id/switchTheme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/title_Light_Theme"
             android:textColor="#00b0ff"
-            android:textStyle="bold"
             android:textSize="20dp"
-            />
+            android:visibility="gone"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/brightness"
+            android:textColor="#00b0ff"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <SeekBar

@@ -17,9 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-/**
- * Created by Media on 11/24/2017.
- */
+
 
 public class DictionaryDatabase {
     private static final String TAG = "DictionaryDatabase";

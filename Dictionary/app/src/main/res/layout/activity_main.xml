@@ -9,16 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#00b0ff"/>
-    <SearchView
-        android:id="@+id/editTextSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:queryHint="@string/editTextSearch_Hint"
-        android:textSize="20dp"
-        android:textColor="@color/textColor"
-        android:iconifiedByDefault="false"
-        />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -178,4 +168,16 @@
         android:layout_marginTop="50dp"
         android:visibility="gone"
         android:background="#00b0ff"/>
+
+    <SearchView
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/editTextSearch_Hint"
+        android:textColor="@color/textColor"
+        android:visibility="visible"
+        android:textSize="20dp" />
+
 </FrameLayout>

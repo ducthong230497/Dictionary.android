@@ -1,8 +1,6 @@
 package com.example.media.dictionary;
 
-/**
- * Created by Media on 11/18/2017.
- */
+
 
 import android.Manifest;
 import android.app.Activity;
