@@ -1,0 +1,8 @@
+1. https://machinelearningcoban.com
+2. https://www.abbyy.com/en-apac/finereader/what-is-ocr/
+3. http://www.irislink.com/EN-US/c1135/What-is-OCR--.aspx
+4. https://github.com/tesseract-ocr/tesseract
+5. https://github.com/rmtheis/android-ocr
+6. https://www.guidingtech.com/53597/best-ocr-apps-android/
+7. http://khcn.vimaru.edu.vn/sites/khcn.vimaru.edu.vn/files/tuan_dat_-
+_thuyet_minh_nckh_2016.pdf
